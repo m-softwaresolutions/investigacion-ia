@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧠 Bichitos V8 PRO - Sistema Completo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { 
+            background: #020617; 
+            overflow: hidden; 
+            color: #e2e8f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none;
+        }
+        #world-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            cursor: crosshair;
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        #bgCanvas { z-index: 0; opacity: 0.15; } 
+        #gridCanvas { z-index: 5; opacity: 0.25; pointer-events: none; }
+        #artCanvas { z-index: 10; mix-blend-mode: screen; opacity: 0.9; } 
+        #creaturesCanvas { z-index: 20; } 
+        
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0; bottom: 0;
+            width: 320px;
+            background: rgba(2, 6, 23, 0.96);
+            backdrop-filter: blur(14px);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 50;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+        
+        /* Scrollbar personalizado */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(56, 189, 248, 0.3);
+            border-radius: 3px;
+        }
+        .sidebar::-webkit-scrollbar-thumb:hover {
+            background: rgba(56, 189, 248, 0.5);
+        }
+        
+        .sidebar.collapsed { 
+            transform: translateX(-320px); 
+        }
+        
+        .toggle-btn {
+            position: absolute;
+            right: -32px; 
+            top: 50%; 
+            transform: translateY(-50%);
+            width: 32px; 
+            height: 90px;
+            background: linear-gradient(135deg, #1e293b, #334155);
+            color: #38bdf8;
+            border-radius: 0 12px 12px 0;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            box-shadow: 2px 0 12px rgba(0,0,0,0.4);
+            transition: all 0.3s ease;
+            z-index: 51;
+        }
+        .toggle-btn:hover {
+            background: linear-gradient(135deg, #334155, #475569);
+            right: -34px;
+            box-shadow: 3px 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .stat-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 10px; 
+            padding: 12px; 
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+        .stat-card:hover {
+            background: rgba(255,255,255,0.07);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-1px);
+        }
+        
+        .section-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1.3px;
+            margin-top: 20px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid rgba(56, 189, 248, 0.2);
+            padding-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        /* Sliders mejorados */
+        .slider-container {
+            margin-bottom: 16px;
+            padding: 8px 0;
+        }
+        
+        .slider-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        
+        .slider-name {
+            font-size: 11px;
+            color: #cbd5e1;
+            font-weight: 500;
+        }
+        
+        .slider-value {
+            font-size: 11px;
+            font-family: 'Courier New', monospace;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(56, 189, 248, 0.1);
+        }
+        
+        input[type="range"] {
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(to right, #1e293b 0%, #334155 100%);
+            border-radius: 6px;
+            outline: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+        
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.6), 0 0 0 3px rgba(56, 189, 248, 0.2);
+            transition: all 0.2s ease;
+        }
+        
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+            box-shadow: 0 3px 12px rgba(56, 189, 248, 0.8), 0 0 0 4px rgba(56, 189, 248, 0.3);
+        }
+        
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+            cursor: pointer;
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.6);
+        }
+        
+        input[type="range"]:active::-webkit-slider-thumb {
+            transform: scale(1.25);
+        }
+        
+        button {
+            transition: all 0.2s ease;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(30, 41, 59, 0.8);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-top: 6px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #38bdf8, #0ea5e9, #06b6d4);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .notification {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            background: rgba(34, 197, 94, 0.95);
+            color: white;
+            padding: 14px 24px;
+            border-radius: 10px;
+            z-index: 100;
+            opacity: 0;
+            transform: translateY(-30px) scale(0.9);
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            pointer-events: none;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            font-weight: 600;
+            font-size: 13px;
+        }
+        .notification.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        
+        .notification.error {
+            background: rgba(239, 68, 68, 0.95);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #64748b, #475569);
+        }
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #475569, #334155);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+        .btn-success:hover {
+            background: linear-gradient(135deg, #059669, #047857);
+        }
+        
+        .btn-warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        .btn-warning:hover {
+            background: linear-gradient(135deg, #d97706, #b45309);
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+        
+        .btn-purple {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+        .btn-purple:hover {
+            background: linear-gradient(135deg, #7c3aed, #6d28d9);
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .file-input-wrapper input[type=file] {
+            position: absolute;
+            left: -9999px;
+        }
+        
+        .file-input-label {
+            display: block;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .file-input-label:hover {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+        
+        .info-tip {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 16px;
+        }
+        
+        .info-tip-text {
+            font-size: 10px;
+            color: #93c5fd;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="world-container">
+        <canvas id="bgCanvas"></canvas>
+        <canvas id="gridCanvas"></canvas>
+        <canvas id="artCanvas"></canvas>
+        <canvas id="creaturesCanvas"></canvas>
+    </div>
+
+    <div id="notification" class="notification">¡Acción completada!</div>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="toggle-btn" id="toggleBtn">◀</div>
+        <div class="p-6 pb-24">
+            <!-- HEADER -->
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 bg-clip-text text-transparent">
+                    BICHITOS V8 PRO
+                </h1>
+                <p class="text-[9px] text-slate-500 uppercase tracking-widest mt-1">
+                    Sistema Avanzado de Partículas Inteligentes
+                </p>
+            </div>
+
+            <!-- ESTADÍSTICAS -->
+            <div class="space-y-2">
+                <div class="stat-card">
+                    <p class="text-[9px] text-slate-400">SECTOR ACTUAL</p>
+                    <h2 id="sectorVal" class="text-xl font-mono font-bold text-blue-400">0,0</h2>
+                </div>
+                
+                <div class="stat-card">
+                    <p class="text-[9px] text-slate-400">COBERTURA DEL SECTOR</p>
+                    <h2 id="sectorCoverageVal" class="text-lg font-mono text-cyan-400">0%</h2>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="stat-card">
+                        <p class="text-[8px] text-slate-400">COMPLETADOS</p>
+                        <h3 id="completedSectors" class="text-lg font-mono text-green-400">0</h3>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-[8px] text-slate-400">FPS</p>
+                        <h3 id="fpsCounter" class="text-lg font-mono text-yellow-400">60</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="stat-card">
+                        <p class="text-[8px] text-slate-400">CRIATURAS</p>
+                        <h3 id="creatureCount" class="text-lg font-mono text-purple-400">600</h3>
+                    </div>
+                    <div class="stat-card">
+                        <p class="text-[8px] text-slate-400">TIEMPO</p>
+                        <h3 id="timeCounter" class="text-lg font-mono text-pink-400">00:00</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- IMAGEN OBJETIVO -->
+            <div class="section-title">📷 Imagen Objetivo</div>
+            <div class="file-input-wrapper">
+                <input type="file" id="imgInput" accept="image/*">
+                <label for="imgInput" class="file-input-label">
+                    📁 Seleccionar Imagen
+                </label>
+            </div>
+
+            <!-- CONTROLES DE SIMULACIÓN -->
+            <div class="section-title">⚙️ Parámetros Generales</div>
+            
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-name">Magnetismo</span>
+                    <span id="magValue" class="slider-value text-blue-400">0.08</span>
+                </div>
+                <input type="range" id="magSlider" min="0.01" max="0.5" step="0.01" value="0.08">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-name">Velocidad</span>
+                    <span id="speedValue" class="slider-value text-cyan-400">1.5x</span>
+                </div>
+                <input type="range" id="speedSlider" min="0.1" max="5" step="0.1" value="1.5">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-name">Cantidad de Criaturas</span>
+                    <span id="creatureSliderValue" class="slider-value text-purple-400">600</span>
+                </div>
+                <input type="range" id="creatureSlider" min="50" max="1200" step="50" value="600">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-name">Tamaño de Sector</span>
+                    <span id="gridValue" class="slider-value text-green-400">100px</span>
+                </div>
+                <input type="range" id="gridSlider" min="50" max="250" step="10" value="100">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-name">Umbral de Cobertura</span>
+                    <span id="thresholdValue" class="slider-value text-yellow-400">75%</span>
+                </div>
+                <input type="range" id="thresholdSlider" min="30" max="95" step="5" value="75">
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-label">
+                    <span class="slider-name">Velocidad de Oscilación</span>
+                    <span id="oscValue" class="slider-value text-pink-400">0.05</span>
+                </div>
+                <input type="range" id="oscSlider" min="0.01" max="0.2" step="0.01" value="0.05">
+            </div>
+
+            <!-- CONTROLES PRINCIPALES -->
+            <div class="section-title">🎮 Controles Principales</div>
+            <div class="space-y-2">
+                <button id="btnPlay" class="w-full btn-primary py-3 rounded-lg text-xs font-bold shadow-lg">
+                    ⏸️ PAUSAR SIMULACIÓN
+                </button>
+                <button id="btnReset" class="w-full btn-secondary py-3 rounded-lg text-xs font-bold">
+                    🗑️ LIMPIAR LIENZO
+                </button>
+                <button id="btnResetSector" class="w-full btn-purple py-3 rounded-lg text-xs font-bold">
+                    🔄 REINICIAR SECTORES
+                </button>
+                <button id="btnToggleBg" class="w-full btn-warning py-3 rounded-lg text-xs font-bold">
+                    🎨 FONDO: OFF
+                </button>
+            </div>
+
+            <!-- EXPORTAR/IMPORTAR -->
+            <div class="section-title">💾 Gestión de Estado</div>
+            <div class="space-y-2">
+                <button id="btnExportImage" class="w-full btn-success py-3 rounded-lg text-xs font-bold">
+                    🖼️ EXPORTAR IMAGEN (PNG)
+                </button>
+                <button id="btnExportState" class="w-full btn-success py-3 rounded-lg text-xs font-bold">
+                    📦 EXPORTAR ESTADO COMPLETO
+                </button>
+                
+                <div class="file-input-wrapper">
+                    <input type="file" id="importStateInput" accept=".json">
+                    <label for="importStateInput" class="file-input-label" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        📥 IMPORTAR ESTADO
+                    </label>
+                </div>
+            </div>
+
+            <!-- INFO TIP -->
+            <div class="info-tip">
+                <p class="info-tip-text">
+                    <strong>💡 Consejo Pro:</strong> Exporta el estado completo para guardar la posición de todas las criaturas, configuración y progreso. ¡Podrás continuar exactamente donde lo dejaste!
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        const CONFIG = {
+            maxCreatures: 600,
+            gridSize: 100,
+            sectorThreshold: 75,
+            minDistance: 12,
+            oscillationSpeed: 0.05,
+            spatialGridSize: 50
+        };
+
+        const SPECIES = {
+            'cyan':   { r:0,   g:200, b:255, icon: '❈' },
+            'yellow': { r:255, g:220, b:50,  icon: '✶' },
+            'white':  { r:255, g:255, b:255, icon: '✧' }
+        };
+
+        const state = {
+            creatures: [],
+            targetData: null,
+            width: window.innerWidth || 800,
+            height: window.innerHeight || 600,
+            paused: false,
+            speed: 1.5,
+            magnetism: 0.08,
+            ticks: 0,
+            currentSector: { x: 0, y: 0 },
+            sectorDirection: 1, 
+            completedSectors: 0,
+            spatialGrid: new Map(),
+            bgEnabled: false,
+            startTime: Date.now(),
+            frameCount: 0,
+            lastFpsUpdate: Date.now(),
+            targetImageDataURL: null
+        };
+
+        // Canvas references
+        const cvsBg = document.getElementById('bgCanvas');
+        const ctxBg = cvsBg.getContext('2d');
+        const cvsArt = document.getElementById('artCanvas');
+        const ctxArt = cvsArt.getContext('2d');
+        const cvsCr = document.getElementById('creaturesCanvas');
+        const ctxCr = cvsCr.getContext('2d');
+        const cvsGrid = document.getElementById('gridCanvas');
+        const ctxGrid = cvsGrid.getContext('2d');
+
+        class Creature {
+            constructor(x, y, type) {
+                this.x = x; 
+                this.y = y;
+                this.vx = (Math.random()-0.5) * 2;
+                this.vy = (Math.random()-0.5) * 2;
+                this.type = type;
+                this.rgb = SPECIES[type];
+                this.brushSize = 1.5 + Math.random() * 2;
+                this.phase = Math.random() * Math.PI * 2;
+                this.colorStr = `rgb(${this.rgb.r},${this.rgb.g},${this.rgb.b})`;
+            }
+
+            update() {
+                this.applyFlockingSeparation();
+
+                this.phase += CONFIG.oscillationSpeed;
+                const breathX = Math.cos(this.phase) * 2.5;
+                const breathY = Math.sin(this.phase * 0.7) * 2.5;
+
+                const tx = (state.currentSector.x * CONFIG.gridSize) + (CONFIG.gridSize / 2);
+                const ty = (state.currentSector.y * CONFIG.gridSize) + (CONFIG.gridSize / 2);
+                
+                if (state.targetData) {
+                    this.vx += (tx + breathX - this.x) * state.magnetism * 0.012;
+                    this.vy += (ty + breathY - this.y) * state.magnetism * 0.012;
+                    this.interact();
+                }
+
+                this.x += this.vx * state.speed;
+                this.y += this.vy * state.speed;
+                this.vx *= 0.94; 
+                this.vy *= 0.94;
+
+                if (this.x < 0) this.x = state.width;
+                if (this.x > state.width) this.x = 0;
+                if (this.y < 0) this.y = state.height;
+                if (this.y > state.height) this.y = 0;
+            }
+
+            applyFlockingSeparation() {
+                const gridX = Math.floor(this.x / CONFIG.spatialGridSize);
+                const gridY = Math.floor(this.y / CONFIG.spatialGridSize);
+                
+                for (let dx = -1; dx <= 1; dx++) {
+                    for (let dy = -1; dy <= 1; dy++) {
+                        const key = `${gridX + dx},${gridY + dy}`;
+                        const nearby = state.spatialGrid.get(key) || [];
+                        
+                        for (let other of nearby) {
+                            if (other === this) continue;
+                            const dx2 = other.x - this.x;
+                            const dy2 = other.y - this.y;
+                            const distSq = dx2*dx2 + dy2*dy2;
+                            const minDist = CONFIG.minDistance;
+                            
+                            if (distSq < minDist * minDist && distSq > 0) {
+                                const dist = Math.sqrt(distSq);
+                                const force = (minDist - dist) / dist;
+                                this.vx -= dx2 * force * 0.15;
+                                this.vy -= dy2 * force * 0.15;
+                            }
+                        }
+                    }
+                }
+            }
+
+            interact() {
+                const ix = Math.floor(this.x);
+                const iy = Math.floor(this.y);
+                if (ix >= 0 && ix < state.width && iy >= 0 && iy < state.height) {
+                    const idx = (iy * state.width + ix) * 4;
+                    const a = state.targetData[idx+3];
+                    
+                    if (a > 20) {
+                        const r = state.targetData[idx];
+                        const g = state.targetData[idx+1];
+                        const b = state.targetData[idx+2];
+                        
+                        ctxArt.fillStyle = `rgba(${r},${g},${b},0.15)`;
+                        ctxArt.beginPath();
+                        ctxArt.arc(this.x, this.y, this.brushSize, 0, Math.PI*2);
+                        ctxArt.fill();
+                    }
+                }
+            }
+
+            draw() {
+                const scale = 1 + Math.sin(this.phase) * 0.25;
+                ctxCr.save();
+                ctxCr.translate(this.x, this.y);
+                ctxCr.scale(scale, scale);
+                ctxCr.fillStyle = this.colorStr;
+                ctxCr.font = "bold 13px Arial";
+                ctxCr.textAlign = "center";
+                ctxCr.shadowBlur = 6;
+                ctxCr.shadowColor = this.colorStr;
+                ctxCr.fillText(this.rgb.icon, 0, 0);
+                ctxCr.restore();
+            }
+
+            toJSON() {
+                return {
+                    x: this.x,
+                    y: this.y,
+                    vx: this.vx,
+                    vy: this.vy,
+                    type: this.type,
+                    brushSize: this.brushSize,
+                    phase: this.phase
+                };
+            }
+
+            static fromJSON(data) {
+                const creature = new Creature(data.x, data.y, data.type);
+                creature.vx = data.vx;
+                creature.vy = data.vy;
+                creature.brushSize = data.brushSize;
+                creature.phase = data.phase;
+                return creature;
+            }
+        }
+
+        function updateSpatialGrid() {
+            state.spatialGrid.clear();
+            for (let creature of state.creatures) {
+                const gridX = Math.floor(creature.x / CONFIG.spatialGridSize);
+                const gridY = Math.floor(creature.y / CONFIG.spatialGridSize);
+                const key = `${gridX},${gridY}`;
+                
+                if (!state.spatialGrid.has(key)) {
+                    state.spatialGrid.set(key, []);
+                }
+                state.spatialGrid.get(key).push(creature);
+            }
+        }
+
+        function evaluateSector() {
+            if (!state.targetData || state.width <= 0) return;
+            
+            const sx = state.currentSector.x * CONFIG.gridSize;
+            const sy = state.currentSector.y * CONFIG.gridSize;
+            
+            const safeW = Math.max(0, Math.min(CONFIG.gridSize, state.width - sx));
+            const safeH = Math.max(0, Math.min(CONFIG.gridSize, state.height - sy));
+            
+            if (safeW <= 1 || safeH <= 1) { 
+                advanceSector(); 
+                return; 
+            }
+
+            const artData = ctxArt.getImageData(sx, sy, safeW, safeH).data;
+            let painted = 0;
+            for (let i = 0; i < artData.length; i += 4) {
+                if (artData[i] > 10 || artData[i+1] > 10 || artData[i+2] > 10) painted++;
+            }
+            
+            state.sectorCoverage = (painted / (safeW * safeH)) * 100;
+            document.getElementById('sectorCoverageVal').innerText = Math.round(state.sectorCoverage) + "%";
+            document.getElementById('progressFill').style.width = state.sectorCoverage + "%";
+            document.getElementById('sectorVal').innerText = `${state.currentSector.x},${state.currentSector.y}`;
+
+            if (state.sectorCoverage >= CONFIG.sectorThreshold) {
+                advanceSector();
+            }
+        }
+
+        function advanceSector() {
+            state.completedSectors++;
+            document.getElementById('completedSectors').innerText = state.completedSectors;
+            
+            const cols = Math.ceil(state.width / CONFIG.gridSize);
+            const rows = Math.ceil(state.height / CONFIG.gridSize);
+            
+            let nextX = state.currentSector.x + state.sectorDirection;
+
+            if (nextX >= cols || nextX < 0) {
+                state.currentSector.y++;
+                state.sectorDirection *= -1;
+            } else {
+                state.currentSector.x = nextX;
+            }
+
+            if (state.currentSector.y >= rows) {
+                state.currentSector = { x:0, y:0 };
+                state.sectorDirection = 1;
+                showNotification('🎉 ¡Imagen completa! Reiniciando recorrido...', 'success');
+            }
+            
+            drawGrid();
+        }
+
+        function drawGrid() {
+            if (state.width <= 0) return;
+            ctxGrid.clearRect(0, 0, state.width, state.height);
+            ctxGrid.strokeStyle = "rgba(56, 189, 248, 0.12)";
+            const cols = Math.ceil(state.width / CONFIG.gridSize);
+            const rows = Math.ceil(state.height / CONFIG.gridSize);
+
+            for(let i=0; i<=cols; i++) {
+                ctxGrid.beginPath(); 
+                ctxGrid.moveTo(i * CONFIG.gridSize, 0); 
+                ctxGrid.lineTo(i * CONFIG.gridSize, state.height); 
+                ctxGrid.stroke();
+            }
+            for(let j=0; j<=rows; j++) {
+                ctxGrid.beginPath(); 
+                ctxGrid.moveTo(0, j * CONFIG.gridSize); 
+                ctxGrid.lineTo(state.width, j * CONFIG.gridSize); 
+                ctxGrid.stroke();
+            }
+
+            ctxGrid.strokeStyle = state.sectorDirection === 1 ? "#38bdf8" : "#f472b6";
+            ctxGrid.lineWidth = 2;
+            ctxGrid.strokeRect(
+                state.currentSector.x * CONFIG.gridSize, 
+                state.currentSector.y * CONFIG.gridSize, 
+                CONFIG.gridSize, 
+                CONFIG.gridSize
+            );
+        }
+
+        function drawAnimatedBackground() {
+            if (!state.bgEnabled) return;
+            
+            const time = Date.now() * 0.001;
+            const gradient = ctxBg.createLinearGradient(
+                0, 0, 
+                state.width * Math.cos(time * 0.1), 
+                state.height * Math.sin(time * 0.15)
+            );
+            gradient.addColorStop(0, 'rgba(30, 41, 59, 0.3)');
+            gradient.addColorStop(0.5, 'rgba(15, 23, 42, 0.2)');
+            gradient.addColorStop(1, 'rgba(30, 41, 59, 0.3)');
+            
+            ctxBg.fillStyle = gradient;
+            ctxBg.fillRect(0, 0, state.width, state.height);
+        }
+
+        function updateFPS() {
+            state.frameCount++;
+            const now = Date.now();
+            if (now - state.lastFpsUpdate >= 1000) {
+                const fps = Math.round(state.frameCount * 1000 / (now - state.lastFpsUpdate));
+                document.getElementById('fpsCounter').innerText = fps;
+                state.frameCount = 0;
+                state.lastFpsUpdate = now;
+            }
+        }
+
+        function updateTimer() {
+            if (!state.paused) {
+                const elapsed = Math.floor((Date.now() - state.startTime) / 1000);
+                const mins = Math.floor(elapsed / 60).toString().padStart(2, '0');
+                const secs = (elapsed % 60).toString().padStart(2, '0');
+                document.getElementById('timeCounter').innerText = `${mins}:${secs}`;
+            }
+        }
+
+        function loop() {
+            if (!state.paused && state.width > 0) {
+                state.ticks++;
+                
+                if (state.bgEnabled) {
+                    ctxBg.clearRect(0, 0, state.width, state.height);
+                    drawAnimatedBackground();
+                }
+                
+                ctxCr.clearRect(0, 0, state.width, state.height);
+                
+                if (state.ticks % 5 === 0) {
+                    updateSpatialGrid();
+                }
+                
+                state.creatures.forEach(c => {
+                    c.update();
+                    c.draw();
+                });
+
+                if (state.ticks % 30 === 0) {
+                    evaluateSector();
+                }
+                
+                if (state.ticks % 10 === 0) {
+                    updateTimer();
+                }
+                
+                updateFPS();
+            }
+            requestAnimationFrame(loop);
+        }
+
+        function showNotification(message, type = 'info') {
+            const notif = document.getElementById('notification');
+            notif.textContent = message;
+            notif.className = 'notification show';
+            if (type === 'error') {
+                notif.classList.add('error');
+            }
+            setTimeout(() => {
+                notif.classList.remove('show');
+                setTimeout(() => notif.classList.remove('error'), 400);
+            }, 3000);
+        }
+
+        function adjustCreatureCount(newCount) {
+            const diff = newCount - state.creatures.length;
+            const keys = Object.keys(SPECIES);
+            
+            if (diff > 0) {
+                for (let i = 0; i < diff; i++) {
+                    state.creatures.push(new Creature(
+                        Math.random() * state.width, 
+                        Math.random() * state.height, 
+                        keys[state.creatures.length % keys.length]
+                    ));
+                }
+            } else if (diff < 0) {
+                state.creatures.splice(newCount);
+            }
+            
+            document.getElementById('creatureCount').innerText = state.creatures.length;
+        }
+
+        function exportImage() {
+            try {
+                const link = document.createElement('a');
+                link.download = `bichitos_art_${Date.now()}.png`;
+                link.href = cvsArt.toDataURL('image/png');
+                link.click();
+                showNotification('✅ Imagen exportada correctamente', 'success');
+            } catch (error) {
+                showNotification('❌ Error al exportar imagen', 'error');
+                console.error(error);
+            }
+        }
+
+        function exportState() {
+            try {
+                const exportData = {
+                    version: '1.0',
+                    timestamp: Date.now(),
+                    config: CONFIG,
+                    state: {
+                        speed: state.speed,
+                        magnetism: state.magnetism,
+                        currentSector: state.currentSector,
+                        sectorDirection: state.sectorDirection,
+                        completedSectors: state.completedSectors,
+                        bgEnabled: state.bgEnabled
+                    },
+                    creatures: state.creatures.map(c => c.toJSON()),
+                    targetImageDataURL: state.targetImageDataURL,
+                    artCanvas: cvsArt.toDataURL('image/png')
+                };
+
+                const json = JSON.stringify(exportData, null, 2);
+                const blob = new Blob([json], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                
+                const link = document.createElement('a');
+                link.download = `bichitos_estado_${Date.now()}.json`;
+                link.href = url;
+                link.click();
+                
+                URL.revokeObjectURL(url);
+                showNotification('✅ Estado completo exportado', 'success');
+            } catch (error) {
+                showNotification('❌ Error al exportar estado', 'error');
+                console.error(error);
+            }
+        }
+
+        function importState(file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const importData = JSON.parse(e.target.result);
+                    
+                    // Restaurar configuración
+                    Object.assign(CONFIG, importData.config);
+                    
+                    // Restaurar estado
+                    state.speed = importData.state.speed;
+                    state.magnetism = importData.state.magnetism;
+                    state.currentSector = importData.state.currentSector;
+                    state.sectorDirection = importData.state.sectorDirection;
+                    state.completedSectors = importData.state.completedSectors;
+                    state.bgEnabled = importData.state.bgEnabled;
+                    
+                    // Restaurar criaturas
+                    state.creatures = importData.creatures.map(c => Creature.fromJSON(c));
+                    
+                    // Restaurar imagen objetivo
+                    if (importData.targetImageDataURL) {
+                        const img = new Image();
+                        img.onload = () => {
+                            const w = Math.max(state.width, 1);
+                            const h = Math.max(state.height, 1);
+                            const hCvs = document.createElement('canvas');
+                            hCvs.width = w; 
+                            hCvs.height = h;
+                            const hCtx = hCvs.getContext('2d');
+                            hCtx.drawImage(img, 0, 0, w, h);
+                            state.targetData = hCtx.getImageData(0, 0, w, h).data;
+                        };
+                        img.src = importData.targetImageDataURL;
+                        state.targetImageDataURL = importData.targetImageDataURL;
+                    }
+                    
+                    // Restaurar canvas de arte
+                    if (importData.artCanvas) {
+                        const img = new Image();
+                        img.onload = () => {
+                            ctxArt.clearRect(0, 0, state.width, state.height);
+                            ctxArt.drawImage(img, 0, 0);
+                        };
+                        img.src = importData.artCanvas;
+                    }
+                    
+                    // Actualizar UI
+                    updateUIFromState();
+                    drawGrid();
+                    
+                    showNotification('✅ Estado importado correctamente', 'success');
+                } catch (error) {
+                    showNotification('❌ Error al importar estado', 'error');
+                    console.error(error);
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function updateUIFromState() {
+            document.getElementById('magSlider').value = state.magnetism;
+            document.getElementById('magValue').innerText = state.magnetism.toFixed(2);
+            
+            document.getElementById('speedSlider').value = state.speed;
+            document.getElementById('speedValue').innerText = state.speed.toFixed(1) + 'x';
+            
+            document.getElementById('creatureSlider').value = state.creatures.length;
+            document.getElementById('creatureSliderValue').innerText = state.creatures.length;
+            document.getElementById('creatureCount').innerText = state.creatures.length;
+            
+            document.getElementById('gridSlider').value = CONFIG.gridSize;
+            document.getElementById('gridValue').innerText = CONFIG.gridSize + 'px';
+            
+            document.getElementById('thresholdSlider').value = CONFIG.sectorThreshold;
+            document.getElementById('thresholdValue').innerText = CONFIG.sectorThreshold + '%';
+            
+            document.getElementById('oscSlider').value = CONFIG.oscillationSpeed;
+            document.getElementById('oscValue').innerText = CONFIG.oscillationSpeed.toFixed(2);
+            
+            document.getElementById('completedSectors').innerText = state.completedSectors;
+            
+            const bgBtn = document.getElementById('btnToggleBg');
+            bgBtn.innerHTML = state.bgEnabled ? "🎨 FONDO: ON" : "🎨 FONDO: OFF";
+        }
+
+        // EVENT LISTENERS
+        document.getElementById('imgInput').onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const img = new Image();
+                img.onload = () => {
+                    const w = Math.max(state.width, 1);
+                    const h = Math.max(state.height, 1);
+                    const hCvs = document.createElement('canvas');
+                    hCvs.width = w; 
+                    hCvs.height = h;
+                    const hCtx = hCvs.getContext('2d');
+                    hCtx.drawImage(img, 0, 0, w, h);
+                    state.targetData = hCtx.getImageData(0, 0, w, h).data;
+                    state.targetImageDataURL = ev.target.result;
+                    
+                    ctxArt.clearRect(0, 0, w, h);
+                    state.currentSector = {x:0, y:0};
+                    state.sectorDirection = 1;
+                    state.completedSectors = 0;
+                    drawGrid();
+                    showNotification('🖼️ Imagen cargada correctamente', 'success');
+                };
+                img.src = ev.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        document.getElementById('toggleBtn').onclick = () => {
+            const side = document.getElementById('sidebar');
+            side.classList.toggle('collapsed');
+            document.getElementById('toggleBtn').innerText = side.classList.contains('collapsed') ? "▶" : "◀";
+        };
+        
+        document.getElementById('btnPlay').onclick = function() {
+            state.paused = !state.paused;
+            this.innerHTML = state.paused ? "▶️ REANUDAR SIMULACIÓN" : "⏸️ PAUSAR SIMULACIÓN";
+            if (!state.paused) {
+                state.startTime = Date.now() - (state.startTime ? Date.now() - state.startTime : 0);
+            }
+        };
+
+        document.getElementById('btnReset').onclick = () => {
+            ctxArt.clearRect(0, 0, state.width, state.height);
+            showNotification('🗑️ Lienzo limpiado');
+        };
+
+        document.getElementById('btnResetSector').onclick = () => {
+            state.currentSector = {x:0, y:0};
+            state.sectorDirection = 1;
+            state.completedSectors = 0;
+            drawGrid();
+            showNotification('🔄 Sectores reiniciados');
+        };
+
+        document.getElementById('btnExportImage').onclick = exportImage;
+        document.getElementById('btnExportState').onclick = exportState;
+
+        document.getElementById('importStateInput').onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                importState(file);
+            }
+        };
+
+        document.getElementById('btnToggleBg').onclick = function() {
+            state.bgEnabled = !state.bgEnabled;
+            this.innerHTML = state.bgEnabled ? "🎨 FONDO: ON" : "🎨 FONDO: OFF";
+            if (!state.bgEnabled) {
+                ctxBg.clearRect(0, 0, state.width, state.height);
+            }
+            showNotification(state.bgEnabled ? '✨ Fondo animado activado' : '⚫ Fondo desactivado');
+        };
+
+        // Sliders
+        document.getElementById('magSlider').oninput = (e) => {
+            state.magnetism = parseFloat(e.target.value);
+            document.getElementById('magValue').innerText = state.magnetism.toFixed(2);
+        };
+
+        document.getElementById('speedSlider').oninput = (e) => {
+            state.speed = parseFloat(e.target.value);
+            document.getElementById('speedValue').innerText = state.speed.toFixed(1) + 'x';
+        };
+
+        document.getElementById('creatureSlider').oninput = (e) => {
+            const newCount = parseInt(e.target.value);
+            CONFIG.maxCreatures = newCount;
+            adjustCreatureCount(newCount);
+            document.getElementById('creatureSliderValue').innerText = newCount;
+        };
+
+        document.getElementById('gridSlider').oninput = (e) => {
+            CONFIG.gridSize = parseInt(e.target.value);
+            document.getElementById('gridValue').innerText = CONFIG.gridSize + 'px';
+            drawGrid();
+        };
+
+        document.getElementById('thresholdSlider').oninput = (e) => {
+            CONFIG.sectorThreshold = parseInt(e.target.value);
+            document.getElementById('thresholdValue').innerText = CONFIG.sectorThreshold + '%';
+        };
+
+        document.getElementById('oscSlider').oninput = (e) => {
+            CONFIG.oscillationSpeed = parseFloat(e.target.value);
+            document.getElementById('oscValue').innerText = CONFIG.oscillationSpeed.toFixed(2);
+        };
+
+        function resize() {
+            state.width = window.innerWidth;
+            state.height = window.innerHeight;
+            [cvsBg, cvsGrid, cvsArt, cvsCr].forEach(c => { 
+                if(c) { 
+                    c.width = state.width; 
+                    c.height = state.height; 
+                }
+            });
+            drawGrid();
+        }
+
+        window.onload = () => {
+            resize();
+            const keys = Object.keys(SPECIES);
+            for(let i = 0; i < CONFIG.maxCreatures; i++) {
+                state.creatures.push(new Creature(
+                    Math.random() * state.width, 
+                    Math.random() * state.height, 
+                    keys[i % keys.length]
+                ));
+            }
+            loop();
+            showNotification('🧠 Bichitos V8 PRO iniciado correctamente', 'success');
+        };
+        
+        window.onresize = resize;
+    </script>
+</body>
+</html>
