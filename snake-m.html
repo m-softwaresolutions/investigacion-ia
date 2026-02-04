@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spectro Brain v18 - Enhanced UI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-dark: #020617;
+            --panel: rgba(15, 23, 42, 0.95);
+            --accent-math: #3b82f6;
+            --accent-prog: #10b981;
+            --accent-soc: #ec4899;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', ui-monospace, monospace;
+            background: var(--bg-dark);
+            color: #f8fafc;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: background-color 2s ease;
+        }
+
+        body.event-rain { background: #0a1628; }
+        body.event-drought { background: #1a0a05; }
+        body.event-boom { background: #051a0a; }
+        body.event-storm { background: #0f0a1a; }
+        body.event-harmony { background: #0a0f1a; }
+
+        .glass-ui {
+            background: var(--panel);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .collapsible-panel {
+            transition: max-height 0.3s ease;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            min-height: 40px;
+            padding: 10px 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            user-select: none;
+        }
+
+        .collapsible-panel.collapsed .panel-header {
+            border-bottom: none;
+        }
+
+        .panel-content {
+            padding: 14px;
+            overflow: visible;
+        }
+
+        .collapsible-panel.collapsed .panel-content {
+            display: none;
+        }
+
+        .collapse-btn {
+            transition: transform 0.3s ease;
+            font-size: 12px;
+            user-select: none;
+        }
+
+        .collapsible-panel.collapsed .collapse-btn {
+            transform: rotate(-90deg);
+        }
+
+        #gameCanvas {
+            image-rendering: pixelated;
+            cursor: crosshair;
+            border-radius: 8px;
+        }
+
+        input[type="range"] {
+            accent-color: #3b82f6;
+            cursor: pointer;
+        }
+
+        .scroll-container {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .scroll-container::-webkit-scrollbar,
+        aside::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .scroll-container::-webkit-scrollbar-track,
+        aside::-webkit-scrollbar-track {
+            background: rgba(15, 23, 42, 0.5);
+        }
+
+        .scroll-container::-webkit-scrollbar-thumb,
+        aside::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.5);
+            border-radius: 3px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+
+        .pulse-warning {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        .event-banner {
+            position: fixed;
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px 24px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            z-index: 100;
+            animation: slideDown 0.5s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        @keyframes slideDown {
+            from {
+                top: 40px;
+                opacity: 0;
+            }
+            to {
+                top: 80px;
+                opacity: 1;
+            }
+        }
+
+        .mini-chart {
+            height: 80px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 6px;
+        }
+
+        .btn {
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+            font-weight: 600;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .stat-badge {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 8px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .creature-type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .progress-ring {
+            width: 40px;
+            height: 40px;
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 10px;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.2s;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .tooltip.show {
+            opacity: 1;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+    </style>
+</head>
+
+<body class="p-4 gap-4">
+
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- Event Banner -->
+    <div id="event-banner" class="event-banner glass-ui" style="display: none;"></div>
+
+    <!-- Header -->
+    <header class="glass-ui p-4 rounded-2xl">
+        <div class="flex justify-between items-center mb-3">
+            <div>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-blue-400 via-pink-400 to-emerald-400 bg-clip-text text-transparent">
+                    SPECTRO<span class="text-blue-400">BRAIN</span> <span class="text-xs text-slate-500">v18</span>
+                </h1>
+                <p class="text-[10px] text-slate-400 uppercase tracking-wider">Enhanced Neural Edition</p>
+            </div>
+            
+            <div class="flex gap-4 items-center">
+                <!-- Quick Stats -->
+                <div class="text-center px-3 py-1 bg-slate-800/50 rounded-lg">
+                    <p class="text-[9px] uppercase text-slate-500 mb-1">GEN</p>
+                    <p id="max-gen" class="text-xl font-bold text-blue-400">1</p>
+                </div>
+                <div class="text-center px-3 py-1 bg-slate-800/50 rounded-lg">
+                    <p class="text-[9px] uppercase text-slate-500 mb-1">Población</p>
+                    <p class="text-xl font-bold">
+                        <span id="pop-header" class="text-emerald-400">0</span>
+                        <span class="text-slate-600 text-sm">/1000</span>
+                    </p>
+                </div>
+                <div class="text-center px-3 py-1 bg-slate-800/50 rounded-lg">
+                    <p class="text-[9px] uppercase text-slate-500 mb-1">Resonancia</p>
+                    <p id="resonance-val" class="text-xl font-bold text-pink-400">595Hz</p>
+                </div>
+                <div class="text-center px-3 py-1 bg-slate-800/50 rounded-lg">
+                    <p class="text-[9px] uppercase text-slate-500 mb-1">Fitness Máx</p>
+                    <p id="max-fitness" class="text-xl font-bold text-emerald-400">0</p>
+                </div>
+                <div class="text-center px-3 py-1 bg-slate-800/50 rounded-lg">
+                    <p class="text-[9px] uppercase text-slate-500 mb-1">Velocidad</p>
+                    <p class="text-sm text-slate-400">
+                        <span id="fps" class="text-emerald-400 font-bold">60</span> FPS
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Control Bar -->
+        <div class="flex gap-2 items-center">
+            <!-- Main Controls -->
+            <div class="flex gap-2">
+                <button id="btn-pause" class="btn px-4 py-2 bg-yellow-600 hover:bg-yellow-500 rounded-lg text-sm">
+                    ⏸️ PAUSAR
+                </button>
+                <button id="btn-restart" class="btn px-4 py-2 bg-red-600 hover:bg-red-500 rounded-lg text-sm">
+                    🔄 REINICIAR
+                </button>
+            </div>
+
+            <!-- File Operations -->
+            <div class="flex gap-2 ml-auto">
+                <button id="btn-export" class="btn px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm">
+                    💾 EXPORTAR
+                </button>
+                <label class="btn px-4 py-2 bg-green-600 hover:bg-green-500 rounded-lg text-sm cursor-pointer">
+                    📥 IMPORTAR
+                    <input type="file" id="import-file" accept=".json" class="hidden">
+                </label>
+            </div>
+
+            <!-- Population Indicators -->
+            <div class="flex gap-2 ml-4">
+                <div class="creature-type-badge bg-blue-600/30 text-blue-400 border border-blue-500/50">
+                    MAT: <span id="count-math" class="font-mono">0</span>
+                </div>
+                <div class="creature-type-badge bg-emerald-600/30 text-emerald-400 border border-emerald-500/50">
+                    PROG: <span id="count-prog" class="font-mono">0</span>
+                </div>
+                <div class="creature-type-badge bg-pink-600/30 text-pink-400 border border-pink-500/50">
+                    SOC: <span id="count-soc" class="font-mono">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Speed Control -->
+        <div class="mt-3 flex items-center gap-3">
+            <label class="text-xs text-slate-400 min-w-fit">Velocidad de Simulación:</label>
+            <input type="range" id="speed-slider" min="1" max="50" value="10" class="flex-1 h-2">
+            <span id="speed-val" class="text-sm font-bold text-blue-400 min-w-[60px]">10x</span>
+            <span id="current-event" class="text-xs px-3 py-1 bg-yellow-600/30 text-yellow-400 rounded-lg border border-yellow-500/50">Normal</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex gap-4 overflow-hidden">
+        
+        <!-- Left Sidebar -->
+        <aside class="w-80 flex flex-col gap-3 overflow-y-auto">
+
+            <!-- Population Stats -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">👥 Estadísticas de Población</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content space-y-3">
+                    <div class="grid-2">
+                        <div class="stat-badge">
+                            <div class="text-[9px] text-slate-500 mb-1">ENTIDADES</div>
+                            <div id="pop-count" class="text-2xl font-bold text-blue-400">0</div>
+                        </div>
+                        <div class="stat-badge">
+                            <div class="text-[9px] text-slate-500 mb-1">COMIDA</div>
+                            <div id="food-count" class="text-2xl font-bold text-emerald-400">0</div>
+                        </div>
+                    </div>
+                    <div class="grid-2">
+                        <div class="stat-badge">
+                            <div class="text-[9px] text-slate-500 mb-1">EDAD PROM</div>
+                            <div id="avg-age" class="text-xl font-bold text-pink-400">0</div>
+                        </div>
+                        <div class="stat-badge">
+                            <div class="text-[9px] text-slate-500 mb-1">REPRODUCT.</div>
+                            <div id="reproductions" class="text-xl font-bold text-purple-400">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Genetic Distribution -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">🧬 Distribución Genética</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content space-y-3">
+                    <div>
+                        <div class="flex justify-between mb-1.5">
+                            <span class="text-blue-400 text-xs font-semibold">🧮 Matemáticos</span>
+                            <span class="text-blue-400 font-mono text-xs"><span id="math-count-detail">0</span> / <span id="math-percent">0%</span></span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="bar-math" class="h-full bg-gradient-to-r from-blue-500 to-blue-400 transition-all"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1.5">
+                            <span class="text-emerald-400 text-xs font-semibold">💻 Programadores</span>
+                            <span class="text-emerald-400 font-mono text-xs"><span id="prog-count-detail">0</span> / <span id="prog-percent">0%</span></span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="bar-prog" class="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between mb-1.5">
+                            <span class="text-pink-400 text-xs font-semibold">🤝 Sociales</span>
+                            <span class="text-pink-400 font-mono text-xs"><span id="soc-count-detail">0</span> / <span id="soc-percent">0%</span></span>
+                        </div>
+                        <div class="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div id="bar-soc" class="h-full bg-gradient-to-r from-pink-500 to-pink-400 transition-all"></div>
+                        </div>
+                    </div>
+                    <div class="pt-2 border-t border-slate-700">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-400">Diversidad Genética:</span>
+                            <span id="diversity-index" class="text-purple-400 font-bold">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Fitness Evolution Chart -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">📈 Evolución de Fitness</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content">
+                    <canvas id="fitnessChart" class="mini-chart w-full"></canvas>
+                    <div class="flex justify-between text-[9px] text-slate-500 mt-2">
+                        <span>Fitness promedio por generación</span>
+                        <span id="fitness-avg" class="text-emerald-400">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advanced Stats -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">📊 Estadísticas Avanzadas</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content space-y-2">
+                    <div class="grid-2 text-xs">
+                        <div class="stat-badge">
+                            <div class="text-slate-400">Energía Total:</div>
+                            <div id="energy-total" class="text-yellow-400 font-bold text-sm">0</div>
+                        </div>
+                        <div class="stat-badge">
+                            <div class="text-slate-400">Linaje Máx:</div>
+                            <div id="max-lineage" class="text-purple-400 font-bold text-sm">0</div>
+                        </div>
+                        <div class="stat-badge">
+                            <div class="text-slate-400">Conocimiento:</div>
+                            <div id="knowledge-level" class="text-pink-400 font-bold text-sm">0</div>
+                        </div>
+                        <div class="stat-badge">
+                            <div class="text-slate-400">Cooperación:</div>
+                            <div id="cooperation-index" class="text-blue-400 font-bold text-sm">0%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </aside>
+
+        <!-- Canvas Central -->
+        <div class="flex-1 glass-ui rounded-2xl p-4 flex flex-col">
+            <div class="flex-1 flex items-center justify-center">
+                <canvas id="gameCanvas"></canvas>
+            </div>
+            <div class="mt-3 flex justify-between items-center text-xs text-slate-400">
+                <div>
+                    <span class="text-slate-500">Zoom:</span>
+                    <button onclick="sim.zoom(1.2)" class="ml-2 px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">+</button>
+                    <button onclick="sim.zoom(0.8)" class="ml-1 px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">-</button>
+                    <button onclick="sim.resetZoom()" class="ml-1 px-2 py-1 bg-slate-700 hover:bg-slate-600 rounded">Reset</button>
+                </div>
+                <div>Click en las criaturas para ver detalles</div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <aside class="w-80 flex flex-col gap-3 overflow-y-auto">
+
+            <!-- Ecosystem Info -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">🌍 Ecosistema</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content">
+                    <div id="clusters-info" class="space-y-2 text-xs"></div>
+                </div>
+            </div>
+
+            <!-- Top Creatures -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">🏆 Top Criaturas</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content">
+                    <div id="top-creatures" class="space-y-2 text-xs scroll-container"></div>
+                </div>
+            </div>
+
+            <!-- Collective Memory -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">🧠 Memoria Colectiva</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content">
+                    <div id="collective-memory" class="space-y-2 text-xs"></div>
+                </div>
+            </div>
+
+            <!-- Event Feed -->
+            <div class="collapsible-panel glass-ui rounded-xl">
+                <div class="panel-header" onclick="togglePanel(this)">
+                    <span class="font-bold text-sm">📢 Feed de Eventos</span>
+                    <span class="collapse-btn">▼</span>
+                </div>
+                <div class="panel-content">
+                    <div id="event-feed" class="text-[10px] space-y-1 scroll-container text-slate-400"></div>
+                </div>
+            </div>
+
+        </aside>
+    </div>
+
+    <script>
+        function togglePanel(header) {
+            header.parentElement.classList.toggle('collapsed');
+        }
+
+        const TYPES = {
+            mathematician: { color: '#3b82f6', emoji: '🧮', skillBonus: { logic: 2, pattern: 1.5, cooperation: 0.8 } },
+            programmer: { color: '#10b981', emoji: '💻', skillBonus: { logic: 1.5, pattern: 2, cooperation: 1 } },
+            social: { color: '#ec4899', emoji: '🤝', skillBonus: { logic: 0.8, pattern: 1, cooperation: 2 } }
+        };
+
+        class NeuralNetwork {
+            constructor(layers = [12, 16, 8, 4]) {
+                this.layers = layers;
+                this.weights = [];
+                this.biases = [];
+                for (let i = 0; i < layers.length - 1; i++) {
+                    this.weights.push(Array(layers[i]).fill(0).map(() => 
+                        Array(layers[i + 1]).fill(0).map(() => (Math.random() * 2 - 1) * 0.5)));
+                    this.biases.push(Array(layers[i + 1]).fill(0).map(() => (Math.random() * 2 - 1) * 0.1));
+                }
+            }
+
+            forward(inputs) {
+                let current = inputs;
+                for (let i = 0; i < this.weights.length; i++) {
+                    const next = [];
+                    for (let j = 0; j < this.weights[i][0].length; j++) {
+                        let sum = this.biases[i][j];
+                        for (let k = 0; k < current.length; k++) {
+                            sum += current[k] * this.weights[i][k][j];
+                        }
+                        next.push(i === this.weights.length - 1 ? sum : Math.tanh(sum));
+                    }
+                    current = next;
+                }
+                return current;
+            }
+
+            mutate(rate = 0.15) {
+                for (let w of this.weights) {
+                    for (let i = 0; i < w.length; i++) {
+                        for (let j = 0; j < w[i].length; j++) {
+                            if (Math.random() < rate) {
+                                w[i][j] += (Math.random() * 2 - 1) * 0.3;
+                                w[i][j] = Math.max(-2, Math.min(2, w[i][j]));
+                            }
+                        }
+                    }
+                }
+                for (let b of this.biases) {
+                    for (let i = 0; i < b.length; i++) {
+                        if (Math.random() < rate) {
+                            b[i] += (Math.random() * 2 - 1) * 0.2;
+                            b[i] = Math.max(-1, Math.min(1, b[i]));
+                        }
+                    }
+                }
+            }
+
+            crossover(other) {
+                const child = new NeuralNetwork(this.layers);
+                for (let i = 0; i < this.weights.length; i++) {
+                    for (let j = 0; j < this.weights[i].length; j++) {
+                        for (let k = 0; k < this.weights[i][j].length; k++) {
+                            child.weights[i][j][k] = Math.random() < 0.5 ? 
+                                this.weights[i][j][k] : other.weights[i][j][k];
+                        }
+                    }
+                }
+                for (let i = 0; i < this.biases.length; i++) {
+                    for (let j = 0; j < this.biases[i].length; j++) {
+                        child.biases[i][j] = Math.random() < 0.5 ? 
+                            this.biases[i][j] : other.biases[i][j];
+                    }
+                }
+                return child;
+            }
+        }
+
+        class Entity {
+            constructor(x, y, type, generation = 1, brain = null) {
+                this.x = x;
+                this.y = y;
+                this.type = type;
+                this.generation = generation;
+                this.energy = 100;
+                this.fitness = 0;
+                this.size = 4;
+                this.speed = 1.2;
+                this.brain = brain || new NeuralNetwork();
+                this.vx = 0;
+                this.vy = 0;
+                this.foodEaten = 0;
+                this.age = 0;
+                this.heritage = {
+                    skills: { 
+                        logic: Math.random(), 
+                        pattern: Math.random(), 
+                        cooperation: Math.random() 
+                    },
+                    traits: { 
+                        aggression: Math.random() * 0.5, 
+                        curiosity: Math.random() 
+                    }
+                };
+                this.memory = { lastFoodPos: null, bestZone: null };
+            }
+
+            update(food, entities, clusters, collectiveMemory, cols, rows) {
+                this.age++;
+                this.energy -= 0.05 + (this.speed * 0.02);
+
+                let nearFood = food.map(f => ({ 
+                    dx: f.x - this.x, 
+                    dy: f.y - this.y, 
+                    dist: Math.hypot(f.x - this.x, f.y - this.y), 
+                    food: f 
+                })).sort((a, b) => a.dist - b.dist).slice(0, 3);
+
+                let nearEntities = entities.filter(e => 
+                    e !== this && Math.hypot(e.x - this.x, e.y - this.y) < 80
+                ).slice(0, 3);
+
+                const inputs = [
+                    this.x / cols,
+                    this.y / rows,
+                    this.energy / 200,
+                    this.vx,
+                    this.vy,
+                    nearFood[0] ? nearFood[0].dx / 100 : 0,
+                    nearFood[0] ? nearFood[0].dy / 100 : 0,
+                    nearFood[0] ? nearFood[0].dist / 100 : 1,
+                    nearEntities.length / 10,
+                    this.heritage.skills.logic,
+                    this.heritage.skills.pattern,
+                    this.heritage.skills.cooperation
+                ];
+
+                const outputs = this.brain.forward(inputs);
+                this.vx = outputs[0] * this.speed;
+                this.vy = outputs[1] * this.speed;
+
+                if (outputs[2] > 0.5 && nearFood[0] && nearFood[0].dist < 30) {
+                    this.vx += (nearFood[0].dx / nearFood[0].dist) * this.speed * 0.8;
+                    this.vy += (nearFood[0].dy / nearFood[0].dist) * this.speed * 0.8;
+                }
+
+                this.x += this.vx;
+                this.y += this.vy;
+
+                this.x = (this.x + cols) % cols;
+                this.y = (this.y + rows) % rows;
+
+                for (let f of nearFood) {
+                    if (f.dist < this.size + 3) {
+                        const idx = food.indexOf(f.food);
+                        if (idx !== -1) {
+                            food.splice(idx, 1);
+                            this.energy += 20;
+                            this.foodEaten++;
+                            this.fitness += 5;
+                            this.memory.lastFoodPos = { x: f.food.x, y: f.food.y };
+                            collectiveMemory.addFoodZone(f.food.x, f.food.y);
+                        }
+                    }
+                }
+
+                const bonus = TYPES[this.type].skillBonus;
+                this.fitness += (this.heritage.skills.logic * bonus.logic + 
+                               this.heritage.skills.pattern * bonus.pattern + 
+                               this.heritage.skills.cooperation * bonus.cooperation) * 0.01;
+                
+                // Cap fitness to prevent infinite growth
+                this.fitness = Math.min(this.fitness, 10000);
+
+                return this.energy > 0;
+            }
+
+            draw(ctx, viewOffsetX = 0, viewOffsetY = 0) {
+                ctx.save();
+                ctx.globalAlpha = Math.min(1, this.energy / 100);
+
+                // Pixelated body
+                const pixelSize = this.size;
+                const screenX = this.x - viewOffsetX;
+                const screenY = this.y - viewOffsetY;
+                
+                ctx.fillStyle = TYPES[this.type].color;
+                ctx.fillRect(
+                    Math.floor(screenX / pixelSize) * pixelSize,
+                    Math.floor(screenY / pixelSize) * pixelSize,
+                    pixelSize,
+                    pixelSize
+                );
+
+                // Energy indicator
+                if (this.energy < 50) {
+                    ctx.strokeStyle = '#f59e0b';
+                    ctx.lineWidth = 1;
+                    ctx.strokeRect(
+                        Math.floor(screenX / pixelSize) * pixelSize,
+                        Math.floor(screenY / pixelSize) * pixelSize,
+                        pixelSize,
+                        pixelSize
+                    );
+                }
+
+                ctx.restore();
+            }
+        }
+
+        class FoodCluster {
+            constructor(x, y, cols, rows) {
+                this.x = x;
+                this.y = y;
+                this.radius = 80 + Math.random() * 120;
+                this.richness = 100;
+                this.maxRichness = 100;
+                this.regenerationRate = 0.05;
+                this.cols = cols;
+                this.rows = rows;
+            }
+
+            generateFood(food, count = 1) {
+                for (let i = 0; i < count; i++) {
+                    if (this.richness > 0 && Math.random() < this.richness / 100) {
+                        const angle = Math.random() * Math.PI * 2;
+                        const dist = Math.random() * this.radius;
+                        food.push({
+                            x: (this.x + Math.cos(angle) * dist + this.cols) % this.cols,
+                            y: (this.y + Math.sin(angle) * dist + this.rows) % this.rows,
+                            value: 20,
+                            age: 0
+                        });
+                        this.richness = Math.max(0, this.richness - 2);
+                    }
+                }
+            }
+
+            update() {
+                this.richness = Math.min(this.maxRichness, this.richness + this.regenerationRate);
+            }
+
+            draw(ctx) {
+                ctx.save();
+                ctx.globalAlpha = 0.1;
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+                const richPercent = this.richness / this.maxRichness;
+                gradient.addColorStop(0, `rgba(16, 185, 129, ${richPercent * 0.3})`);
+                gradient.addColorStop(1, 'rgba(16, 185, 129, 0)');
+                ctx.fillStyle = gradient;
+                ctx.fillRect(this.x - this.radius, this.y - this.radius, this.radius * 2, this.radius * 2);
+                ctx.restore();
+            }
+        }
+
+        class CollectiveMemory {
+            constructor() {
+                this.foodZones = [];
+                this.sharedKnowledge = 0;
+                this.discoveries = [];
+            }
+
+            addFoodZone(x, y) {
+                const existing = this.foodZones.find(z => Math.hypot(z.x - x, z.y - y) < 50);
+                if (!existing) {
+                    this.foodZones.push({ x, y, strength: 1, lastVisit: Date.now() });
+                    this.sharedKnowledge += 5;
+                } else {
+                    existing.strength = Math.min(10, existing.strength + 0.5);
+                    existing.lastVisit = Date.now();
+                    this.sharedKnowledge += 0.5;
+                }
+
+                const cutoff = Date.now() - 60000;
+                this.foodZones = this.foodZones.filter(z => z.lastVisit > cutoff);
+            }
+        }
+
+        class Simulation {
+            constructor() {
+                this.canvas = document.getElementById('gameCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.cols = 1000;
+                this.rows = 700;
+                this.canvas.width = this.cols;
+                this.canvas.height = this.rows;
+
+                this.entities = [];
+                this.food = [];
+                this.foodClusters = [];
+                this.gen = 1;
+                this.reproductions = 0;
+                this.paused = false;
+                this.speed = 10;
+                this.collectiveMemory = new CollectiveMemory();
+                this.currentEvent = null;
+                this.eventTimer = 0;
+                this.fitnessHistory = [];
+                this.fps = 60;
+                this.frameCount = 0;
+                this.lastFpsUpdate = performance.now();
+                this.zoomLevel = 1;
+                this.populationLimitWarned = false;
+
+                this.events = [
+                    { 
+                        name: 'Lluvia de Recursos 🌧️', 
+                        effect: () => this.foodClusters.forEach(c => c.richness = c.maxRichness), 
+                        duration: 300, 
+                        prob: 0.02, 
+                        className: 'event-rain' 
+                    },
+                    { 
+                        name: 'Sequía 🏜️', 
+                        effect: () => this.foodClusters.forEach(c => c.richness *= 0.3), 
+                        duration: 400, 
+                        prob: 0.015, 
+                        className: 'event-drought' 
+                    },
+                    { 
+                        name: 'Boom Reproductivo 💥', 
+                        effect: () => { 
+                            this.entities.forEach(e => e.energy += 50); 
+                            this.triggerMassReproduction(); 
+                        }, 
+                        duration: 200, 
+                        prob: 0.01, 
+                        className: 'event-boom' 
+                    },
+                    { 
+                        name: 'Tormenta Mental ⚡', 
+                        effect: () => this.entities.forEach(e => e.brain.mutate(0.4)), 
+                        duration: 100, 
+                        prob: 0.02, 
+                        className: 'event-storm' 
+                    },
+                    { 
+                        name: 'Armonía Colectiva 🌈', 
+                        effect: () => this.collectiveMemory.sharedKnowledge += 100, 
+                        duration: 250, 
+                        prob: 0.015, 
+                        className: 'event-harmony' 
+                    }
+                ];
+
+                this.init();
+                this.setupControls();
+                this.setupChart();
+                this.loop();
+            }
+
+            init() {
+                for (let i = 0; i < 5; i++) {
+                    this.foodClusters.push(new FoodCluster(
+                        Math.random() * this.cols, 
+                        Math.random() * this.rows, 
+                        this.cols, 
+                        this.rows
+                    ));
+                }
+
+                const types = Object.keys(TYPES);
+                for (let i = 0; i < 30; i++) {
+                    const type = types[Math.floor(Math.random() * types.length)];
+                    this.entities.push(new Entity(
+                        Math.random() * this.cols, 
+                        Math.random() * this.rows, 
+                        type, 
+                        1
+                    ));
+                }
+
+                this.log('🌱 Simulación iniciada con 30 criaturas');
+            }
+
+            setupControls() {
+                document.getElementById('btn-pause').onclick = () => {
+                    this.paused = !this.paused;
+                    document.getElementById('btn-pause').innerHTML = 
+                        this.paused ? '▶️ REANUDAR' : '⏸️ PAUSAR';
+                    
+                    // Reset FPS counter when pausing to avoid incorrect values
+                    if (this.paused) {
+                        this.frameCount = 0;
+                        this.lastFpsUpdate = performance.now();
+                    }
+                };
+
+                document.getElementById('btn-restart').onclick = () => {
+                    if (confirm('¿Reiniciar simulación?')) {
+                        this.entities = [];
+                        this.food = [];
+                        this.foodClusters = [];
+                        this.gen = 1;
+                        this.reproductions = 0;
+                        this.collectiveMemory = new CollectiveMemory();
+                        this.fitnessHistory = [];
+                        this.init();
+                        this.log('🔄 Simulación reiniciada');
+                    }
+                };
+
+                document.getElementById('speed-slider').oninput = (e) => {
+                    this.speed = parseFloat(e.target.value);
+                    document.getElementById('speed-val').innerText = this.speed + 'x';
+                };
+
+                document.getElementById('btn-export').onclick = () => this.export();
+                
+                document.getElementById('import-file').onchange = (e) => {
+                    if (e.target.files[0]) this.import(e.target.files[0]);
+                };
+
+                this.canvas.addEventListener('mousemove', (e) => {
+                    const rect = this.canvas.getBoundingClientRect();
+                    const x = (e.clientX - rect.left) * (this.cols / rect.width);
+                    const y = (e.clientY - rect.top) * (this.rows / rect.height);
+
+                    const nearest = this.entities
+                        .map(e => ({ e, dist: Math.hypot(e.x - x, e.y - y) }))
+                        .sort((a, b) => a.dist - b.dist)[0];
+
+                    const tooltip = document.getElementById('tooltip');
+                    if (nearest && nearest.dist < 15) {
+                        tooltip.innerHTML = `
+                            <div><strong>${TYPES[nearest.e.type].emoji} Gen ${nearest.e.generation}</strong></div>
+                            <div>Energía: ${Math.floor(nearest.e.energy)}</div>
+                            <div>Fitness: ${Math.floor(nearest.e.fitness)}</div>
+                            <div>Comida: ${nearest.e.foodEaten}</div>
+                            <div>Edad: ${nearest.e.age}</div>
+                        `;
+                        tooltip.style.left = e.clientX + 10 + 'px';
+                        tooltip.style.top = e.clientY + 10 + 'px';
+                        tooltip.classList.add('show');
+                    } else {
+                        tooltip.classList.remove('show');
+                    }
+                });
+            }
+
+            setupChart() {
+                this.chart = document.getElementById('fitnessChart');
+                this.chartCtx = this.chart.getContext('2d');
+                this.chart.width = this.chart.offsetWidth;
+                this.chart.height = 80;
+            }
+
+            drawChart() {
+                const ctx = this.chartCtx;
+                const w = this.chart.width;
+                const h = this.chart.height;
+                
+                ctx.clearRect(0, 0, w, h);
+                
+                if (this.fitnessHistory.length < 2) return;
+                
+                const max = Math.max(...this.fitnessHistory, 1);
+                const step = w / Math.max(this.fitnessHistory.length - 1, 1);
+                
+                ctx.strokeStyle = '#10b981';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                this.fitnessHistory.forEach((val, i) => {
+                    const x = i * step;
+                    const y = h - (val / max) * h;
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                });
+                
+                ctx.stroke();
+            }
+
+            zoom(factor) {
+                this.zoomLevel *= factor;
+                this.zoomLevel = Math.max(0.5, Math.min(3, this.zoomLevel));
+            }
+
+            resetZoom() {
+                this.zoomLevel = 1;
+            }
+
+            update() {
+                if (this.paused) return;
+
+                for (let step = 0; step < this.speed; step++) {
+                    this.frameCount++;
+
+                    // Update clusters
+                    this.foodClusters.forEach(c => {
+                        c.update();
+                        c.generateFood(this.food, Math.random() < 0.1 ? 1 : 0);
+                    });
+
+                    // Age and remove old food
+                    this.food = this.food.filter(f => {
+                        f.age++;
+                        return f.age < 600;
+                    });
+
+                    // Update entities (save snapshot to avoid reference issues)
+                    const entitiesSnapshot = [...this.entities];
+                    this.entities = this.entities.filter(e => 
+                        e.update(this.food, entitiesSnapshot, this.foodClusters, 
+                                this.collectiveMemory, this.cols, this.rows)
+                    );
+
+                    // Reproduction (with strict population limit of 1000)
+                    if (this.entities.length < 1000) {
+                        const fertile = this.entities.filter(e => e.energy > 120 && e.foodEaten > 3);
+                        for (let e of fertile) {
+                            // Check limit before each reproduction attempt
+                            if (this.entities.length >= 1000) break;
+                            
+                            if (Math.random() < 0.005 * (e.foodEaten / 10)) {
+                                const partner = fertile.find(p => 
+                                    p !== e && Math.hypot(p.x - e.x, p.y - e.y) < 50
+                                );
+                                if (partner && this.entities.length < 1000) {
+                                    const child = this.reproduce(e, partner);
+                                    if (child) {
+                                        this.entities.push(child);
+                                        e.energy -= 40;
+                                        partner.energy -= 40;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Population limit warning
+                    if (this.entities.length >= 1000) {
+                        if (!this.populationLimitWarned) {
+                            this.log('⚠️ Límite de población alcanzado (1000)');
+                            this.populationLimitWarned = true;
+                        }
+                    } else {
+                        this.populationLimitWarned = false;
+                    }
+
+                    // Hard population cap enforcement
+                    if (this.entities.length > 1000) {
+                        // Sort by fitness and keep only the top 1000
+                        this.entities.sort((a, b) => b.fitness - a.fitness);
+                        this.entities = this.entities.slice(0, 1000);
+                        this.log('⚠️ Población excedida - eliminadas las criaturas más débiles');
+                    }
+
+                    // Events
+                    if (Math.random() < 0.0005 && !this.currentEvent) {
+                        const possibleEvents = this.events.filter(ev => Math.random() < ev.prob);
+                        if (possibleEvents.length > 0) {
+                            // Select random event instead of always first
+                            this.currentEvent = possibleEvents[Math.floor(Math.random() * possibleEvents.length)];
+                            this.currentEvent.effect();
+                            this.eventTimer = this.currentEvent.duration;
+                            this.showEventBanner(this.currentEvent.name);
+                            this.log(`⚡ Evento: ${this.currentEvent.name}`);
+                            document.body.className = this.currentEvent.className;
+                        }
+                    }
+
+                    if (this.currentEvent) {
+                        this.eventTimer--;
+                        if (this.eventTimer <= 0) {
+                            this.currentEvent = null;
+                            document.body.className = '';
+                            document.getElementById('current-event').innerText = 'Normal';
+                        }
+                    }
+
+                    // Extinction check
+                    if (this.entities.length === 0) {
+                        this.log('💀 Extinción total - reiniciando...');
+                        setTimeout(() => this.init(), 2000);
+                    }
+
+                    // Generation tracking
+                    if (this.entities.length > 0) {
+                        const maxGen = Math.max(...this.entities.map(e => e.generation));
+                        if (maxGen > this.gen) {
+                            this.gen = maxGen;
+                            this.log(`🧬 Nueva generación alcanzada: ${this.gen}`);
+                            
+                            // Update fitness history
+                            const avgFitness = this.entities.reduce((s, e) => s + e.fitness, 0) / this.entities.length;
+                            this.fitnessHistory.push(avgFitness);
+                            if (this.fitnessHistory.length > 50) this.fitnessHistory.shift();
+                        }
+                    }
+                }
+
+                this.updateUI();
+            }
+
+            reproduce(e1, e2) {
+                // Hard limit check
+                if (this.entities.length >= 1000) {
+                    return null;
+                }
+                
+                const types = [e1.type, e2.type];
+                const childType = types[Math.floor(Math.random() * 2)];
+                const childBrain = e1.brain.crossover(e2.brain);
+                childBrain.mutate(0.15);
+
+                const child = new Entity(
+                    (e1.x + e2.x) / 2, 
+                    (e1.y + e2.y) / 2, 
+                    childType, 
+                    Math.max(e1.generation, e2.generation) + 1, 
+                    childBrain
+                );
+                
+                child.heritage.skills.logic = 
+                    (e1.heritage.skills.logic + e2.heritage.skills.logic) / 2 + (Math.random() * 0.2 - 0.1);
+                child.heritage.skills.pattern = 
+                    (e1.heritage.skills.pattern + e2.heritage.skills.pattern) / 2 + (Math.random() * 0.2 - 0.1);
+                child.heritage.skills.cooperation = 
+                    (e1.heritage.skills.cooperation + e2.heritage.skills.cooperation) / 2 + (Math.random() * 0.2 - 0.1);
+
+                this.reproductions++;
+                return child;
+            }
+
+            triggerMassReproduction() {
+                const fertile = this.entities.filter(e => e.energy > 100);
+                for (let i = 0; i < Math.min(10, fertile.length); i++) {
+                    // Stop if we hit the population limit
+                    if (this.entities.length >= 1000) break;
+                    
+                    if (fertile.length > i + 1) {
+                        const child = this.reproduce(fertile[i], fertile[i + 1]);
+                        if (child) this.entities.push(child);
+                    }
+                }
+            }
+
+            draw() {
+                this.ctx.fillStyle = 'rgba(2, 6, 23, 0.3)';
+                this.ctx.fillRect(0, 0, this.cols, this.rows);
+
+                // Draw clusters
+                this.foodClusters.forEach(c => c.draw(this.ctx));
+
+                // Draw collective memory zones
+                this.ctx.globalAlpha = 0.1;
+                this.collectiveMemory.foodZones.forEach(z => {
+                    this.ctx.fillStyle = '#ec4899';
+                    this.ctx.beginPath();
+                    this.ctx.arc(z.x, z.y, 20 + z.strength * 3, 0, Math.PI * 2);
+                    this.ctx.fill();
+                });
+                this.ctx.globalAlpha = 1;
+
+                // Draw food (pixelated)
+                const pixelSize = 3;
+                this.food.forEach(f => {
+                    this.ctx.fillStyle = `hsl(${120 - f.age / 10}, 80%, 60%)`;
+                    this.ctx.fillRect(
+                        Math.floor(f.x / pixelSize) * pixelSize,
+                        Math.floor(f.y / pixelSize) * pixelSize,
+                        pixelSize,
+                        pixelSize
+                    );
+                });
+
+                // Draw entities
+                this.entities.forEach(e => e.draw(this.ctx, 0, 0));
+            }
+
+            showEventBanner(text) {
+                const banner = document.getElementById('event-banner');
+                banner.innerText = text;
+                banner.style.display = 'block';
+                setTimeout(() => {
+                    banner.style.display = 'none';
+                }, 3000);
+            }
+
+            updateUI() {
+                const popCount = this.entities.length;
+                document.getElementById('pop-count').innerText = popCount;
+                document.getElementById('pop-header').innerText = popCount;
+                
+                // Change color when approaching population limit
+                const popHeaderEl = document.getElementById('pop-header');
+                if (popCount >= 1000) {
+                    popHeaderEl.className = 'text-red-400 pulse-warning';
+                } else if (popCount >= 800) {
+                    popHeaderEl.className = 'text-yellow-400';
+                } else {
+                    popHeaderEl.className = 'text-emerald-400';
+                }
+                
+                document.getElementById('food-count').innerText = this.food.length;
+                document.getElementById('max-gen').innerText = this.gen;
+                document.getElementById('knowledge-level').innerText = 
+                    Math.floor(this.collectiveMemory.sharedKnowledge);
+
+                // Average age
+                const avgAge = this.entities.length > 0 ? 
+                    Math.floor(this.entities.reduce((s, e) => s + e.age, 0) / this.entities.length) : 0;
+                document.getElementById('avg-age').innerText = avgAge;
+
+                // Diversity
+                if (this.entities.length > 1) {
+                    const skills = this.entities.map(e => Object.values(e.heritage.skills));
+                    const avgSkills = skills[0].map((_, i) => 
+                        skills.reduce((s, sk) => s + sk[i], 0) / skills.length
+                    );
+                    const variance = avgSkills.reduce((s, avg, i) =>
+                        s + skills.reduce((ss, sk) => ss + Math.pow(sk[i] - avg, 2), 0) / skills.length, 
+                        0) / avgSkills.length;
+                    document.getElementById('diversity-index').innerText = Math.floor(variance * 100) + '%';
+                }
+
+                if (this.currentEvent) {
+                    document.getElementById('current-event').innerText = this.currentEvent.name;
+                }
+
+                const now = performance.now();
+                if (now - this.lastFpsUpdate > 1000) {
+                    this.fps = Math.round(this.frameCount * 1000 / (now - this.lastFpsUpdate));
+                    document.getElementById('fps').innerText = this.fps;
+                    this.frameCount = 0;
+                    this.lastFpsUpdate = now;
+                }
+
+                const counts = { mathematician: 0, programmer: 0, social: 0 };
+                this.entities.forEach(e => counts[e.type]++);
+                const total = this.entities.length || 1;
+
+                ['math', 'prog', 'soc'].forEach(k => {
+                    const key = k === 'math' ? 'mathematician' : k === 'prog' ? 'programmer' : 'social';
+                    const count = counts[key];
+                    const perc = (count / total) * 100;
+                    
+                    document.getElementById(`count-${k}`).innerText = count;
+                    document.getElementById(`${k}-count-detail`).innerText = count;
+                    document.getElementById(`${k}-percent`).innerText = Math.floor(perc) + '%';
+                    document.getElementById(`bar-${k}`).style.width = `${perc}%`;
+                    
+                    const countEl = document.getElementById(`count-${k}`);
+                    if (count === 0) countEl.classList.add('pulse-warning');
+                    else countEl.classList.remove('pulse-warning');
+                });
+
+                const avgFitness = this.entities.length > 0 ? 
+                    Math.floor(this.entities.reduce((s, e) => s + e.fitness, 0) / this.entities.length) : 0;
+                const maxFitness = this.entities.length > 0 ? 
+                    Math.floor(Math.max(...this.entities.map(e => e.fitness))) : 0;
+                const totalEnergy = Math.floor(this.entities.reduce((s, e) => s + e.energy, 0));
+                const maxLineage = this.entities.length > 0 ? 
+                    Math.max(...this.entities.map(e => e.generation)) : 0;
+
+                document.getElementById('fitness-avg').innerText = avgFitness;
+                document.getElementById('max-fitness').innerText = maxFitness;
+                document.getElementById('energy-total').innerText = totalEnergy;
+                document.getElementById('max-lineage').innerText = maxLineage;
+                document.getElementById('reproductions').innerText = this.reproductions;
+
+                // Cooperation index
+                const avgCooperation = this.entities.length > 0 ?
+                    this.entities.reduce((s, e) => s + e.heritage.skills.cooperation, 0) / this.entities.length : 0;
+                document.getElementById('cooperation-index').innerText = Math.floor(avgCooperation * 100) + '%';
+
+                // Resonance (decorative)
+                const resonance = 595 + Math.floor(Math.sin(Date.now() / 1000) * 10);
+                document.getElementById('resonance-val').innerText = resonance + 'Hz';
+
+                // Ecosystem info
+                document.getElementById('clusters-info').innerHTML = `
+                    <div class="stat-badge">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Clusters activos:</span>
+                            <span class="text-emerald-400 font-bold">${this.foodClusters.length}</span>
+                        </div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Comida total:</span>
+                            <span class="text-blue-400 font-bold">${this.food.length}</span>
+                        </div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Riqueza promedio:</span>
+                            <span class="text-yellow-400 font-bold">${this.foodClusters.length > 0 ? 
+                                Math.floor(this.foodClusters.reduce((s, c) => s + c.richness, 0) / this.foodClusters.length) : 0}%</span>
+                        </div>
+                    </div>
+                `;
+
+                // Top creatures
+                const topCreatures = [...this.entities].sort((a, b) => b.fitness - a.fitness).slice(0, 5);
+                document.getElementById('top-creatures').innerHTML = topCreatures.length > 0 ? topCreatures.map((e, i) => `
+                    <div class="stat-badge border-l-2" style="border-color: ${TYPES[e.type].color}">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-bold">#${i + 1} ${TYPES[e.type].emoji}</span>
+                            <span style="color: ${TYPES[e.type].color}">Gen ${e.generation}</span>
+                        </div>
+                        <div class="text-[9px] flex gap-2">
+                            <span class="text-emerald-400">🏆${Math.floor(e.fitness)}</span>
+                            <span class="text-blue-400">⚡${Math.floor(e.energy)}</span>
+                            <span class="text-yellow-400">🍎${e.foodEaten}</span>
+                            <span class="text-purple-400">📅${e.age}</span>
+                        </div>
+                    </div>
+                `).join('') : '<div class="text-slate-500 text-center">Sin criaturas</div>';
+
+                // Collective memory
+                document.getElementById('collective-memory').innerHTML = `
+                    <div class="stat-badge">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Conocimiento:</span>
+                            <span class="text-pink-400 font-bold">${Math.floor(this.collectiveMemory.sharedKnowledge)}</span>
+                        </div>
+                    </div>
+                    <div class="stat-badge">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Zonas conocidas:</span>
+                            <span class="text-emerald-400 font-bold">${this.collectiveMemory.foodZones.length}</span>
+                        </div>
+                    </div>
+                `;
+
+                // Draw chart
+                this.drawChart();
+            }
+
+            log(msg) {
+                const feed = document.getElementById('event-feed');
+                const e = document.createElement('div');
+                e.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+                feed.prepend(e);
+                if (feed.children.length > 30) feed.lastChild.remove();
+            }
+
+            export() {
+                const data = {
+                    version: '18.0',
+                    timestamp: Date.now(),
+                    generation: this.gen,
+                    reproductions: this.reproductions,
+                    fitnessHistory: this.fitnessHistory,
+                    entities: this.entities.map(e => ({
+                        x: e.x, y: e.y, type: e.type, generation: e.generation,
+                        energy: e.energy, fitness: e.fitness, heritage: e.heritage,
+                        brain: { layers: e.brain.layers, weights: e.brain.weights, biases: e.brain.biases }
+                    })),
+                    foodClusters: this.foodClusters.map(c => ({ 
+                        x: c.x, y: c.y, richness: c.richness, maxRichness: c.maxRichness, radius: c.radius 
+                    })),
+                    collectiveMemory: this.collectiveMemory
+                };
+
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `spectro_brain_v18_gen${this.gen}_${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+                this.log('💾 Simulación exportada');
+            }
+
+            import(file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = JSON.parse(e.target.result);
+                        
+                        // Validate data structure
+                        if (!data.entities || !Array.isArray(data.entities)) {
+                            throw new Error('Invalid file format: missing entities array');
+                        }
+                        
+                        this.entities = [];
+                        this.gen = data.generation || 1;
+                        this.reproductions = data.reproductions || 0;
+                        this.fitnessHistory = data.fitnessHistory || [];
+
+                        if (data.collectiveMemory) {
+                            this.collectiveMemory = Object.assign(new CollectiveMemory(), data.collectiveMemory);
+                        }
+
+                        if (data.foodClusters && Array.isArray(data.foodClusters)) {
+                            this.foodClusters = data.foodClusters.map(c => {
+                                const cluster = new FoodCluster(c.x, c.y, this.cols, this.rows);
+                                cluster.richness = c.richness || 100;
+                                cluster.maxRichness = c.maxRichness || 100;
+                                cluster.radius = c.radius || 100;
+                                return cluster;
+                            });
+                        }
+
+                        data.entities.forEach(eData => {
+                            const type = ['mathematician', 'programmer', 'social'].includes(eData.type) ? 
+                                eData.type : 'mathematician';
+                            let brain = null;
+                            
+                            // Validate brain structure before importing
+                            if (eData.brain && eData.brain.layers && eData.brain.weights && eData.brain.biases) {
+                                try {
+                                    brain = new NeuralNetwork(eData.brain.layers);
+                                    brain.weights = eData.brain.weights;
+                                    brain.biases = eData.brain.biases;
+                                } catch (brainError) {
+                                    console.warn('Invalid brain data, using new brain:', brainError);
+                                    brain = null;
+                                }
+                            }
+                            
+                            const entity = new Entity(
+                                eData.x || Math.random() * this.cols, 
+                                eData.y || Math.random() * this.rows, 
+                                type, 
+                                eData.generation || this.gen, 
+                                brain
+                            );
+                            entity.energy = Math.max(0, Math.min(200, eData.energy || 100));
+                            entity.fitness = Math.max(0, eData.fitness || 0);
+                            if (eData.heritage) entity.heritage = eData.heritage;
+                            this.entities.push(entity);
+                        });
+
+                        this.log(`📥 Importadas ${this.entities.length} criaturas`);
+                    } catch (err) {
+                        console.error('Import error:', err);
+                        this.log("❌ Error al importar: " + err.message);
+                        alert('Error al importar archivo: ' + err.message);
+                    }
+                };
+                reader.readAsText(file);
+            }
+
+            loop() {
+                this.update();
+                this.draw();
+                requestAnimationFrame(() => this.loop());
+            }
+        }
+
+        let sim;
+        window.onload = () => {
+            sim = new Simulation();
+        };
+    </script>
+</body>
+
+</html>
