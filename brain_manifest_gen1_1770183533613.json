@@ -1,0 +1,3126 @@
+{
+  "manifest": {
+    "name": "BrainFactory",
+    "version": "2.1-expressive",
+    "exportedAt": "2026-02-04T05:38:53.579Z",
+    "exportedAtHuman": "miércoles, 4 de febrero de 2026, 00:38"
+  },
+  "expression": "═══════════════════════════════════════════════════════════\n                 🧠 MANIFIESTO DEL BRAIN 🧠                \n═══════════════════════════════════════════════════════════\n\nSoy un ecosistema de 44 criaturas vivas.\nHe experimentado 1 generaciones de evolución.\nMi estado actual: 💚 Saludable\n\n📊 MI COMPOSICIÓN:\n   💻 undefined Programadores - construyen lógica\n   📐 undefined Matemáticos - calculan patrones\n   🗣️ undefined Sociales - traducen mi voz interior\n\n📡 MI VOZ INTERIOR (Onda Global):\n   Frecuencia: 613 Hz\n   Amplitud: 36%\n   Estado emocional dominante: 〰️ gratitud\n\n📚 MI SABIDURÍA ACUMULADA:\n   Total de conocimiento: 29 fragmentos\n   💻 Código: 7 snippets\n   📐 Ecuaciones: 2 fórmulas\n   🗣️ Interacciones: 9 patrones sociales\n   Densidad de sabiduría: 0.66 por criatura\n   Área más fuerte: fundamentals (9 items)\n\n🧬 MI HISTORIA GENÉTICA:\n   Profundidad máxima de linaje: 0 generaciones\n   Mutaciones acumuladas: 0\n   Diversidad de ancestros: 0 únicos\n\n🏆 LOGROS EVOLUTIVOS:\n   Fitness promedio: 43.5%\n   Mejor individuo: 69.8%\n   Élite (>80%): 0 criaturas\n\n💭 LO QUE SIENTO AHORA:\n   \"Existimos. 44 formas de vida procesando el mundo juntas.\"\n\n═══════════════════════════════════════════════════════════\n  Exportado: 4/2/2026, 0:38:53\n  Versión: BrainFactory v2.1-expressive\n═══════════════════════════════════════════════════════════",
+  "statistics": {
+    "population": {
+      "total": 44,
+      "byType": {
+        "inteligentes": 15,
+        "sabios": 9,
+        "emocionales": 20
+      },
+      "alive": 44,
+      "thriving": 7,
+      "struggling": 0
+    },
+    "fitness": {
+      "average": 0.4349973897352255,
+      "max": 0.6977659104942768,
+      "min": 0.1167610488489075,
+      "distribution": {
+        "elite": 0,
+        "strong": 7,
+        "average": 19,
+        "weak": 18
+      }
+    },
+    "energy": {
+      "total": 3959.1091095405427,
+      "average": 89.97975248955778
+    },
+    "evolution": {
+      "generation": 1,
+      "totalSteps": 69,
+      "stepsPerGeneration": 69
+    }
+  },
+  "heritage": {
+    "originCounts": {
+      "sabio": 9,
+      "inteligente": 15,
+      "emocional": 20
+    },
+    "maxLineageDepth": 0,
+    "totalMutations": 0,
+    "averageLineageDepth": 0,
+    "ancestorDiversity": 0,
+    "lineages": []
+  },
+  "waves": {
+    "globalState": {
+      "frequency": 613,
+      "amplitude": 36,
+      "dominantEmotion": "gratitud",
+      "contributors": 44
+    },
+    "emotionDistribution": {
+      "gratitud": 20,
+      "optimismo": 3,
+      "euforia": 4,
+      "energia": 4,
+      "vitalidad": 1,
+      "lucha": 1,
+      "color": 1,
+      "olvido": 2,
+      "curiosidad": 2,
+      "salud": 2,
+      "crecimiento": 2,
+      "juego": 1,
+      "placer": 1
+    },
+    "frequencyBand": "very_high"
+  },
+  "wisdom": {
+    "totalKnowledgeItems": 29,
+    "byType": {
+      "code": {
+        "count": 7,
+        "samples": [
+          "CODE(9227)",
+          "CODE(9126)",
+          "CODE(8582)"
+        ]
+      },
+      "equation": {
+        "count": 2,
+        "samples": [
+          "EQU(7138)",
+          "EQU(-577)"
+        ]
+      },
+      "interaction": {
+        "count": 9,
+        "samples": [
+          "CHAT(6454)",
+          "CHAT(5197)",
+          "CHAT(3371)"
+        ]
+      }
+    },
+    "categories": {
+      "fundamentals": 9,
+      "algorithms": 0,
+      "dataStructures": 0,
+      "physics": 0,
+      "calculus": 0,
+      "machineLearning": 0,
+      "social": 9,
+      "advanced": 0
+    },
+    "wisdomDensity": "0.66",
+    "topContributors": [
+      {
+        "id": "c-1770183529838-8523",
+        "type": "emocional",
+        "knowledgeItems": 4,
+        "fitness": 0.6394455507339459
+      },
+      {
+        "id": "c-1770183529838-575",
+        "type": "emocional",
+        "knowledgeItems": 3,
+        "fitness": 0.5615496303230747
+      },
+      {
+        "id": "c-1770183529838-4321",
+        "type": "emocional",
+        "knowledgeItems": 2,
+        "fitness": 0.4671806723055054
+      },
+      {
+        "id": "c-1770183529838-7284",
+        "type": "emocional",
+        "knowledgeItems": 2,
+        "fitness": 0.5391163649549912
+      },
+      {
+        "id": "c-1770183529838-3233",
+        "type": "emocional",
+        "knowledgeItems": 2,
+        "fitness": 0.33843631853161044
+      }
+    ]
+  },
+  "globalNets": [
+    {
+      "numNeurons": 20,
+      "inputSize": 4,
+      "neurons": [
+        {
+          "weights": [
+            0.1704071006480301,
+            -0.6498898577818744,
+            -0.4053361982761947,
+            -0.7482280740099607
+          ],
+          "bias": 0.7875757671882271
+        },
+        {
+          "weights": [
+            0.5235929451355037,
+            0.17692453559820298,
+            -0.4774986666419925,
+            -0.2965908444705794
+          ],
+          "bias": 0.5187248371018225
+        },
+        {
+          "weights": [
+            -0.39891383559796156,
+            -0.4629827237879296,
+            0.08286319470402237,
+            0.7559138696066416
+          ],
+          "bias": 0.41790518271070387
+        },
+        {
+          "weights": [
+            -0.8122973864022272,
+            -0.4330087158165068,
+            -0.9171845924634803,
+            -0.45560347507154897
+          ],
+          "bias": 0.577955140808148
+        },
+        {
+          "weights": [
+            -0.19659265738718656,
+            0.1936373598393415,
+            -0.38004728904789875,
+            -0.6032897194730324
+          ],
+          "bias": 0.5517353148266282
+        },
+        {
+          "weights": [
+            -0.12437328345383425,
+            0.6821148864636337,
+            0.12689332010182186,
+            -0.8464770561258406
+          ],
+          "bias": -0.3933405072788161
+        },
+        {
+          "weights": [
+            0.24197468611792283,
+            0.7138892910995216,
+            -0.0944315702589289,
+            -0.48706643387796666
+          ],
+          "bias": 0.9430945301109082
+        },
+        {
+          "weights": [
+            0.7084359623356213,
+            0.8330671556335243,
+            0.9686774945939931,
+            0.12661659079730558
+          ],
+          "bias": 0.5392097670706466
+        },
+        {
+          "weights": [
+            -0.3789821012692318,
+            -0.725156955141415,
+            0.05733776438076199,
+            0.6178437497473794
+          ],
+          "bias": -0.1156819264557114
+        },
+        {
+          "weights": [
+            0.16751453595851995,
+            -0.8460411582699221,
+            -0.4414824718894439,
+            -0.5813217040029854
+          ],
+          "bias": -0.24926180950020616
+        },
+        {
+          "weights": [
+            0.6559585544545552,
+            -0.12903786017922458,
+            -0.8832111548883264,
+            0.32980321836675586
+          ],
+          "bias": -0.12141231605971958
+        },
+        {
+          "weights": [
+            -0.42626440827206435,
+            -0.8645899969648372,
+            -0.9734076834367023,
+            0.2756760839523109
+          ],
+          "bias": -0.20844358093909987
+        },
+        {
+          "weights": [
+            0.6349572979441513,
+            -0.10902857935605836,
+            -0.9841900139542445,
+            -0.3767890335674746
+          ],
+          "bias": -0.4314093845598874
+        },
+        {
+          "weights": [
+            -0.05200755842745286,
+            0.0811896043447844,
+            0.16967428116437322,
+            0.23466360262657981
+          ],
+          "bias": 0.8288534528476903
+        },
+        {
+          "weights": [
+            0.7260068798251291,
+            0.9821967881896789,
+            -0.8126811932918907,
+            -0.7001101485256376
+          ],
+          "bias": -0.1426506944021031
+        },
+        {
+          "weights": [
+            -0.42531824686575215,
+            0.984480204706297,
+            0.9345979064983507,
+            -0.25689371442700604
+          ],
+          "bias": 0.22793085298484606
+        },
+        {
+          "weights": [
+            0.9231633362861904,
+            -0.5998828620816807,
+            -0.9652940678214945,
+            -0.1959563692170465
+          ],
+          "bias": 0.4619443049554004
+        },
+        {
+          "weights": [
+            -0.6262776436065969,
+            -0.26408643415749267,
+            0.45243804851420655,
+            -0.08499159428059477
+          ],
+          "bias": 0.25523833421901077
+        },
+        {
+          "weights": [
+            0.8690492510075367,
+            0.043199940606216014,
+            -0.5337516323861082,
+            -0.459035263716818
+          ],
+          "bias": 0.15969788154539022
+        },
+        {
+          "weights": [
+            0.8197804179653376,
+            -0.1687197443331987,
+            0.06841992565968047,
+            -0.3820019515702471
+          ],
+          "bias": -0.8388666347335059
+        }
+      ]
+    },
+    {
+      "numNeurons": 20,
+      "inputSize": 4,
+      "neurons": [
+        {
+          "weights": [
+            0.4170379490955365,
+            0.08771347092627169,
+            -0.9923941761934307,
+            -0.2032787648651475
+          ],
+          "bias": -0.06630845320542433
+        },
+        {
+          "weights": [
+            0.9555480836145138,
+            -0.7884725707365996,
+            -0.9787013810347611,
+            -0.5838769172588065
+          ],
+          "bias": 0.751275402378069
+        },
+        {
+          "weights": [
+            -0.5053726020777736,
+            0.6614769833216629,
+            0.8974036551027613,
+            0.31544877780014136
+          ],
+          "bias": 0.7007093541907881
+        },
+        {
+          "weights": [
+            0.07564202776606388,
+            0.7959882379257497,
+            0.9989143728067924,
+            -0.28375870194390806
+          ],
+          "bias": 0.8986522334399611
+        },
+        {
+          "weights": [
+            -0.5525459368482579,
+            -0.957163870555251,
+            -0.444805743932283,
+            -0.6972431869157847
+          ],
+          "bias": -0.08217869912557108
+        },
+        {
+          "weights": [
+            0.48062740475011534,
+            0.3939639159162156,
+            -0.27343360413159146,
+            -0.627997997256778
+          ],
+          "bias": 0.26982732191097725
+        },
+        {
+          "weights": [
+            0.35705250783937403,
+            -0.21776297030040248,
+            0.41168784557392235,
+            0.6539095390840328
+          ],
+          "bias": 0.24188697344960275
+        },
+        {
+          "weights": [
+            0.023296540808824595,
+            0.33822708452506967,
+            -0.16001253926307157,
+            0.07457061002141452
+          ],
+          "bias": -0.05265626609568752
+        },
+        {
+          "weights": [
+            -0.4092591739332332,
+            -0.263027537516787,
+            0.44956774108982045,
+            -0.6190405698385328
+          ],
+          "bias": -0.21738413650903388
+        },
+        {
+          "weights": [
+            -0.8326566464257599,
+            0.6547939504437879,
+            0.11536332162200824,
+            0.9360756323285737
+          ],
+          "bias": 0.502876214978232
+        },
+        {
+          "weights": [
+            0.15321772272029777,
+            -0.25944534731396063,
+            -0.6228488916812867,
+            -0.12079325231880444
+          ],
+          "bias": -0.5947401639565912
+        },
+        {
+          "weights": [
+            0.49715804722648427,
+            0.3897316065802334,
+            0.7295639134150771,
+            0.5565090987301897
+          ],
+          "bias": 0.7815395685022517
+        },
+        {
+          "weights": [
+            -0.1733514713046076,
+            0.058756827142525614,
+            0.668271623683709,
+            0.029351765488853765
+          ],
+          "bias": -0.7661658368979225
+        },
+        {
+          "weights": [
+            0.8426571360881938,
+            0.1795515558105838,
+            0.6483409480181948,
+            0.4775534857729493
+          ],
+          "bias": 0.45455650980758255
+        },
+        {
+          "weights": [
+            0.7306175533719479,
+            0.9813276163104854,
+            0.24693453266524434,
+            -0.8683811273616122
+          ],
+          "bias": 0.03137450168097433
+        },
+        {
+          "weights": [
+            -0.3101073700357275,
+            0.4560437294622979,
+            0.11343462443818142,
+            0.32201263966727467
+          ],
+          "bias": 0.2967872266981526
+        },
+        {
+          "weights": [
+            0.790899313483284,
+            0.8581975240582296,
+            -0.7264758107718146,
+            -0.9643195321890987
+          ],
+          "bias": -0.742160618837191
+        },
+        {
+          "weights": [
+            0.6497510161853506,
+            -0.016917278936838365,
+            -0.12134928090756181,
+            0.2976418258349014
+          ],
+          "bias": -0.5329177250103041
+        },
+        {
+          "weights": [
+            0.4004050227322027,
+            -0.879341162234903,
+            0.13712648513398373,
+            0.8336897719237422
+          ],
+          "bias": 0.8445811678616881
+        },
+        {
+          "weights": [
+            0.1275732899795774,
+            0.7292268640698285,
+            -0.3829965535875084,
+            0.5816322930019109
+          ],
+          "bias": 0.07030822113592494
+        }
+      ]
+    }
+  ],
+  "globalNetSwap": false,
+  "aiCompatible": {
+    "claim": "Este sistema simula evolución genética con criaturas que se comunican via ondas internas",
+    "proofs": [
+      {
+        "type": "population_dynamics",
+        "description": "Población mantiene diversidad de tipos",
+        "evidence": {
+          "inteligentes": 15,
+          "sabios": 9,
+          "emocionales": 20
+        },
+        "valid": false
+      },
+      {
+        "type": "fitness_evolution",
+        "description": "Fitness promedio muestra progreso evolutivo",
+        "evidence": {
+          "average": 0.4349973897352255,
+          "max": 0.6977659104942768
+        },
+        "valid": true
+      },
+      {
+        "type": "heritage_tracking",
+        "description": "Sistema rastrea linajes genéticos",
+        "evidence": {
+          "maxDepth": 0,
+          "mutations": 0
+        },
+        "valid": false
+      },
+      {
+        "type": "wave_communication",
+        "description": "Criaturas emiten ondas que se suman en señal global",
+        "evidence": {
+          "frequency": 613,
+          "amplitude": 36,
+          "dominantEmotion": "gratitud",
+          "contributors": 44
+        },
+        "valid": true
+      },
+      {
+        "type": "social_translation",
+        "description": "Sociales traducen ondas internas a lenguaje humano",
+        "evidence": {
+          "translationsCount": 4,
+          "lastTranslation": {
+            "frequency": "🌟 PICO DE ACTIVIDAD!",
+            "emotion": "🙏 El colectivo siente GRATITUD",
+            "intensity": "🔈",
+            "raw": "622Hz @ 39%",
+            "timestamp": 1770183532483,
+            "translatorId": "c-1770183529838-8475",
+            "translatorFitness": 0.6214299813547771
+          }
+        },
+        "valid": true
+      },
+      {
+        "type": "wisdom_accumulation",
+        "description": "Criaturas acumulan sabiduría de código, ecuaciones e interacciones",
+        "evidence": {
+          "totalKnowledge": 29,
+          "codeSnippets": 7,
+          "equations": 2,
+          "interactions": 9,
+          "samples": {
+            "code": [
+              "CODE(9227)",
+              "CODE(9126)"
+            ],
+            "equation": [
+              "EQU(7138)",
+              "EQU(-577)"
+            ],
+            "interaction": [
+              "CHAT(6454)",
+              "CHAT(5197)"
+            ]
+          }
+        },
+        "valid": true
+      }
+    ],
+    "validProofsCount": 4,
+    "overallValidity": true
+  },
+  "translations": [
+    {
+      "frequency": "🌟 PICO DE ACTIVIDAD!",
+      "emotion": "🙏 El colectivo siente GRATITUD",
+      "intensity": "🔈",
+      "raw": "622Hz @ 39%",
+      "timestamp": 1770183532483,
+      "translatorId": "c-1770183529838-8475",
+      "translatorFitness": 0.6214299813547771
+    },
+    {
+      "frequency": "💫 Resonancia máxima",
+      "emotion": "🙏 Estado predominante: GRATITUD",
+      "intensity": "🔈",
+      "raw": "671Hz @ 24%",
+      "timestamp": 1770183527464,
+      "translatorId": "c-1770183511044-6549",
+      "translatorFitness": 0.981220480784187
+    },
+    {
+      "frequency": "🌈 Trascendencia colectiva",
+      "emotion": "🙏 Resonancia de GRATITUD detectada",
+      "intensity": "🔈",
+      "raw": "683Hz @ 29%",
+      "timestamp": 1770183522802,
+      "translatorId": "c-1770183511044-6549",
+      "translatorFitness": 0.9672822382436861
+    },
+    {
+      "frequency": "🎆 Explosión sináptica",
+      "emotion": "🙏 Ola de GRATITUD en expansión",
+      "intensity": "🔈",
+      "raw": "683Hz @ 32%",
+      "timestamp": 1770183517488,
+      "translatorId": "c-1770183511047-5909",
+      "translatorFitness": 0.8342652886326051
+    }
+  ],
+  "environment": {
+    "world": {
+      "w": 800,
+      "h": 600
+    },
+    "resourceEnergyRange": [
+      10,
+      20
+    ],
+    "energyDecayPerStep": 0.1,
+    "fitnessDecayRate": 0.001,
+    "minResources": 70,
+    "cooperationBonus": 0.05,
+    "survivalRate": 0.5,
+    "initialPopulation": 45,
+    "evolutionFrequency": 250,
+    "invasionFrequency": 4300,
+    "catastropheFrequency": 1100,
+    "eventFrequency": 150,
+    "cooperationRadius": 50,
+    "energyShareRate": 0.02,
+    "rescueEnergyIfAllDead": 80,
+    "outputTTLms": 10000,
+    "speedMultiplierEffectOnDecay": 0.5,
+    "groupByType": true,
+    "groupingStrength": 0.05,
+    "adaptiveMode": true,
+    "groupMode": "snake",
+    "snakeSpacing": 12,
+    "social": {
+      "base": 396,
+      "range": [
+        350,
+        500
+      ]
+    },
+    "emotions": {
+      "curiosidad": {
+        "freqMod": 1.2,
+        "ampMod": 0.6,
+        "symbol": "🔍"
+      },
+      "hambre": {
+        "freqMod": 0.7,
+        "ampMod": 0.9,
+        "symbol": "🍽️"
+      },
+      "felicidad": {
+        "freqMod": 1.4,
+        "ampMod": 0.5,
+        "symbol": "😊"
+      },
+      "tristeza": {
+        "freqMod": 0.6,
+        "ampMod": 0.4,
+        "symbol": "😢"
+      },
+      "ira": {
+        "freqMod": 2,
+        "ampMod": 0.8,
+        "symbol": "😡"
+      },
+      "miedo": {
+        "freqMod": 1.9,
+        "ampMod": 0.3,
+        "symbol": "😨"
+      },
+      "sorpresa": {
+        "freqMod": 1.5,
+        "ampMod": 0.7,
+        "symbol": "😲"
+      },
+      "asco": {
+        "freqMod": 0.5,
+        "ampMod": 0.6,
+        "symbol": "🤢"
+      },
+      "confianza": {
+        "freqMod": 1,
+        "ampMod": 0.5,
+        "symbol": "🤝"
+      },
+      "anticipacion": {
+        "freqMod": 1.3,
+        "ampMod": 0.6,
+        "symbol": "⏳"
+      },
+      "amor": {
+        "freqMod": 1.2,
+        "ampMod": 0.8,
+        "symbol": "❤️"
+      },
+      "odio": {
+        "freqMod": 1.8,
+        "ampMod": 0.9,
+        "symbol": "💔"
+      },
+      "celos": {
+        "freqMod": 1.7,
+        "ampMod": 0.7,
+        "symbol": "😒"
+      },
+      "envidia": {
+        "freqMod": 1.6,
+        "ampMod": 0.6,
+        "symbol": "😠"
+      },
+      "culpa": {
+        "freqMod": 0.4,
+        "ampMod": 0.5,
+        "symbol": "😓"
+      },
+      "verguenza": {
+        "freqMod": 0.3,
+        "ampMod": 0.4,
+        "symbol": "😳"
+      },
+      "orgullo": {
+        "freqMod": 1.4,
+        "ampMod": 0.7,
+        "symbol": "🦁"
+      },
+      "humildad": {
+        "freqMod": 0.8,
+        "ampMod": 0.3,
+        "symbol": "🙇"
+      },
+      "gratitud": {
+        "freqMod": 1.1,
+        "ampMod": 0.5,
+        "symbol": "🙏"
+      },
+      "esperanza": {
+        "freqMod": 1.3,
+        "ampMod": 0.6,
+        "symbol": "🕊️"
+      },
+      "confusion": {
+        "freqMod": 0.9,
+        "ampMod": 0.4,
+        "symbol": "😵"
+      },
+      "claridad": {
+        "freqMod": 1.5,
+        "ampMod": 0.5,
+        "symbol": "✨"
+      },
+      "concentracion": {
+        "freqMod": 1.1,
+        "ampMod": 0.3,
+        "symbol": "🎯"
+      },
+      "distraccion": {
+        "freqMod": 0.8,
+        "ampMod": 0.4,
+        "symbol": "🦋"
+      },
+      "aburrimiento": {
+        "freqMod": 0.5,
+        "ampMod": 0.2,
+        "symbol": "😑"
+      },
+      "interes": {
+        "freqMod": 1.3,
+        "ampMod": 0.6,
+        "symbol": "🤩"
+      },
+      "duda": {
+        "freqMod": 0.7,
+        "ampMod": 0.3,
+        "symbol": "🤔"
+      },
+      "certeza": {
+        "freqMod": 1.2,
+        "ampMod": 0.6,
+        "symbol": "✅"
+      },
+      "memoria": {
+        "freqMod": 1,
+        "ampMod": 0.4,
+        "symbol": "🧠"
+      },
+      "olvido": {
+        "freqMod": 0.4,
+        "ampMod": 0.2,
+        "symbol": "🌫️"
+      },
+      "soledad": {
+        "freqMod": 0.5,
+        "ampMod": 0.3,
+        "symbol": "🧍"
+      },
+      "compania": {
+        "freqMod": 1.2,
+        "ampMod": 0.7,
+        "symbol": "👥"
+      },
+      "liderazgo": {
+        "freqMod": 1.6,
+        "ampMod": 0.8,
+        "symbol": "👑"
+      },
+      "sumision": {
+        "freqMod": 0.6,
+        "ampMod": 0.3,
+        "symbol": "🐕"
+      },
+      "rebeldia": {
+        "freqMod": 1.7,
+        "ampMod": 0.7,
+        "symbol": "✊"
+      },
+      "obediencia": {
+        "freqMod": 0.9,
+        "ampMod": 0.4,
+        "symbol": "🫡"
+      },
+      "empatia": {
+        "freqMod": 1.1,
+        "ampMod": 0.6,
+        "symbol": "🤗"
+      },
+      "apatia": {
+        "freqMod": 0.4,
+        "ampMod": 0.2,
+        "symbol": "😐"
+      },
+      "generosidad": {
+        "freqMod": 1.3,
+        "ampMod": 0.7,
+        "symbol": "🤲"
+      },
+      "egoismo": {
+        "freqMod": 0.8,
+        "ampMod": 0.5,
+        "symbol": "🫳"
+      },
+      "inspiracion": {
+        "freqMod": 1.8,
+        "ampMod": 0.7,
+        "symbol": "💡"
+      },
+      "bloqueo": {
+        "freqMod": 0.2,
+        "ampMod": 0.1,
+        "symbol": "🧱"
+      },
+      "fluidez": {
+        "freqMod": 1.4,
+        "ampMod": 0.5,
+        "symbol": "🌊"
+      },
+      "caos": {
+        "freqMod": 1.9,
+        "ampMod": 0.9,
+        "symbol": "🌀"
+      },
+      "orden": {
+        "freqMod": 1,
+        "ampMod": 0.4,
+        "symbol": "📐"
+      },
+      "logica": {
+        "freqMod": 1.1,
+        "ampMod": 0.3,
+        "symbol": "⚙️"
+      },
+      "intuicion": {
+        "freqMod": 1.6,
+        "ampMod": 0.6,
+        "symbol": "🔮"
+      },
+      "analisis": {
+        "freqMod": 1.2,
+        "ampMod": 0.4,
+        "symbol": "📊"
+      },
+      "sintesis": {
+        "freqMod": 1.5,
+        "ampMod": 0.7,
+        "symbol": "🧩"
+      },
+      "innovacion": {
+        "freqMod": 1.7,
+        "ampMod": 0.8,
+        "symbol": "🚀"
+      },
+      "cansancio": {
+        "freqMod": 0.4,
+        "ampMod": 0.2,
+        "symbol": "😫"
+      },
+      "energia": {
+        "freqMod": 1.6,
+        "ampMod": 0.8,
+        "symbol": "⚡"
+      },
+      "dolor": {
+        "freqMod": 0.3,
+        "ampMod": 0.9,
+        "symbol": "🤕"
+      },
+      "placer": {
+        "freqMod": 1.4,
+        "ampMod": 0.7,
+        "symbol": "😌"
+      },
+      "hambre_voraz": {
+        "freqMod": 0.8,
+        "ampMod": 1,
+        "symbol": "🍗"
+      },
+      "sed": {
+        "freqMod": 0.7,
+        "ampMod": 0.8,
+        "symbol": "💧"
+      },
+      "frio": {
+        "freqMod": 0.5,
+        "ampMod": 0.5,
+        "symbol": "🥶"
+      },
+      "calor": {
+        "freqMod": 1.5,
+        "ampMod": 0.6,
+        "symbol": "🥵"
+      },
+      "enfermedad": {
+        "freqMod": 0.4,
+        "ampMod": 0.4,
+        "symbol": "🦠"
+      },
+      "salud": {
+        "freqMod": 1.2,
+        "ampMod": 0.6,
+        "symbol": "💪"
+      },
+      "glitch": {
+        "freqMod": 2.5,
+        "ampMod": 0.5,
+        "symbol": "👾"
+      },
+      "latencia": {
+        "freqMod": 0.2,
+        "ampMod": 0.1,
+        "symbol": "🐢"
+      },
+      "bandwidth": {
+        "freqMod": 1.8,
+        "ampMod": 0.9,
+        "symbol": "📶"
+      },
+      "firewall": {
+        "freqMod": 0.5,
+        "ampMod": 1,
+        "symbol": "🛡️"
+      },
+      "virus": {
+        "freqMod": 2,
+        "ampMod": 0.8,
+        "symbol": "☣️"
+      },
+      "debug": {
+        "freqMod": 1.1,
+        "ampMod": 0.5,
+        "symbol": "🐛"
+      },
+      "compilacion": {
+        "freqMod": 1.4,
+        "ampMod": 0.6,
+        "symbol": "🧱"
+      },
+      "runtime": {
+        "freqMod": 1.3,
+        "ampMod": 0.5,
+        "symbol": "🏃"
+      },
+      "stackoverflow": {
+        "freqMod": 2.2,
+        "ampMod": 0.9,
+        "symbol": "🥞"
+      },
+      "bucle": {
+        "freqMod": 1,
+        "ampMod": 1,
+        "symbol": "🔄"
+      },
+      "vacio": {
+        "freqMod": 0.1,
+        "ampMod": 0.1,
+        "symbol": "⚫"
+      },
+      "infinito": {
+        "freqMod": 2,
+        "ampMod": 0.5,
+        "symbol": "♾️"
+      },
+      "tiempo": {
+        "freqMod": 1,
+        "ampMod": 0.5,
+        "symbol": "🕰️"
+      },
+      "espacio": {
+        "freqMod": 0.5,
+        "ampMod": 1,
+        "symbol": "🌌"
+      },
+      "gravedad": {
+        "freqMod": 0.3,
+        "ampMod": 0.8,
+        "symbol": "🍎"
+      },
+      "luz": {
+        "freqMod": 2,
+        "ampMod": 0.7,
+        "symbol": "☀️"
+      },
+      "oscuridad": {
+        "freqMod": 0.2,
+        "ampMod": 0.4,
+        "symbol": "🌑"
+      },
+      "color": {
+        "freqMod": 1.5,
+        "ampMod": 0.6,
+        "symbol": "🌈"
+      },
+      "sonido": {
+        "freqMod": 1.4,
+        "ampMod": 0.5,
+        "symbol": "🎵"
+      },
+      "silencio": {
+        "freqMod": 0.1,
+        "ampMod": 0.1,
+        "symbol": "🔇"
+      },
+      "karma": {
+        "freqMod": 1,
+        "ampMod": 0.5,
+        "symbol": "☸️"
+      },
+      "aura": {
+        "freqMod": 1.3,
+        "ampMod": 0.4,
+        "symbol": "✨"
+      },
+      "nirvana": {
+        "freqMod": 0.1,
+        "ampMod": 0.9,
+        "symbol": "🧘"
+      },
+      "alma": {
+        "freqMod": 1.1,
+        "ampMod": 0.6,
+        "symbol": "👻"
+      },
+      "destino": {
+        "freqMod": 1,
+        "ampMod": 0.8,
+        "symbol": "🛤️"
+      },
+      "azar": {
+        "freqMod": 1.9,
+        "ampMod": 0.9,
+        "symbol": "🎲"
+      },
+      "magia": {
+        "freqMod": 1.7,
+        "ampMod": 0.7,
+        "symbol": "🪄"
+      },
+      "alquimia": {
+        "freqMod": 1.4,
+        "ampMod": 0.6,
+        "symbol": "⚗️"
+      },
+      "profecia": {
+        "freqMod": 1.2,
+        "ampMod": 0.5,
+        "symbol": "📜"
+      },
+      "vision": {
+        "freqMod": 1.6,
+        "ampMod": 0.6,
+        "symbol": "👁️"
+      },
+      "tormenta": {
+        "freqMod": 2,
+        "ampMod": 1,
+        "symbol": "⛈️"
+      },
+      "calma": {
+        "freqMod": 0.5,
+        "ampMod": 0.2,
+        "symbol": "🌅"
+      },
+      "crecimiento": {
+        "freqMod": 1.2,
+        "ampMod": 0.6,
+        "symbol": "🌱"
+      },
+      "decadencia": {
+        "freqMod": 0.4,
+        "ampMod": 0.4,
+        "symbol": "🍂"
+      },
+      "fuego": {
+        "freqMod": 1.8,
+        "ampMod": 0.9,
+        "symbol": "🔥"
+      },
+      "agua": {
+        "freqMod": 1.1,
+        "ampMod": 0.6,
+        "symbol": "💧"
+      },
+      "tierra": {
+        "freqMod": 0.6,
+        "ampMod": 0.8,
+        "symbol": "🌍"
+      },
+      "aire": {
+        "freqMod": 1.5,
+        "ampMod": 0.4,
+        "symbol": "💨"
+      },
+      "metal": {
+        "freqMod": 0.9,
+        "ampMod": 1,
+        "symbol": "⚔️"
+      },
+      "madera": {
+        "freqMod": 1.1,
+        "ampMod": 0.5,
+        "symbol": "🪵"
+      },
+      "lucha": {
+        "freqMod": 1.9,
+        "ampMod": 0.9,
+        "symbol": "🥊"
+      },
+      "huida": {
+        "freqMod": 2,
+        "ampMod": 0.8,
+        "symbol": "🏃"
+      },
+      "busqueda": {
+        "freqMod": 1.3,
+        "ampMod": 0.6,
+        "symbol": "🔎"
+      },
+      "hallazgo": {
+        "freqMod": 1.7,
+        "ampMod": 0.8,
+        "symbol": "💎"
+      },
+      "construccion": {
+        "freqMod": 1.1,
+        "ampMod": 0.7,
+        "symbol": "🏗️"
+      },
+      "destruccion": {
+        "freqMod": 0.3,
+        "ampMod": 1,
+        "symbol": "💣"
+      },
+      "reparacion": {
+        "freqMod": 1,
+        "ampMod": 0.5,
+        "symbol": "🔧"
+      },
+      "aprendizaje": {
+        "freqMod": 1.2,
+        "ampMod": 0.4,
+        "symbol": "🎓"
+      },
+      "ensenanza": {
+        "freqMod": 1.1,
+        "ampMod": 0.5,
+        "symbol": "🏫"
+      },
+      "juego": {
+        "freqMod": 1.5,
+        "ampMod": 0.7,
+        "symbol": "🎮"
+      },
+      "alerta": {
+        "freqMod": 1.8,
+        "ampMod": 0.8,
+        "symbol": "⚠️"
+      },
+      "cooperacion": {
+        "freqMod": 1,
+        "ampMod": 0.7,
+        "symbol": "🤝"
+      },
+      "descanso": {
+        "freqMod": 0.5,
+        "ampMod": 0.3,
+        "symbol": "💤"
+      },
+      "exploracion": {
+        "freqMod": 1.3,
+        "ampMod": 0.7,
+        "symbol": "🧭"
+      },
+      "agonia": {
+        "freqMod": 0.2,
+        "ampMod": 1,
+        "symbol": "💀"
+      },
+      "euforia": {
+        "freqMod": 2,
+        "ampMod": 0.9,
+        "symbol": "🤩"
+      },
+      "optimismo": {
+        "freqMod": 1.4,
+        "ampMod": 0.6,
+        "symbol": "🌟"
+      },
+      "debilidad": {
+        "freqMod": 0.4,
+        "ampMod": 0.3,
+        "symbol": "😩"
+      },
+      "vitalidad": {
+        "freqMod": 1.5,
+        "ampMod": 0.8,
+        "symbol": "💚"
+      },
+      "transcendencia": {
+        "freqMod": 0.8,
+        "ampMod": 1,
+        "symbol": "🌀"
+      },
+      "geometria": {
+        "freqMod": 1.2,
+        "ampMod": 0.4,
+        "symbol": "📐"
+      },
+      "calculo": {
+        "freqMod": 1.3,
+        "ampMod": 0.5,
+        "symbol": "➗"
+      },
+      "union": {
+        "freqMod": 1.1,
+        "ampMod": 0.7,
+        "symbol": "🔗"
+      },
+      "red": {
+        "freqMod": 1.3,
+        "ampMod": 0.6,
+        "symbol": "🕸️"
+      },
+      "reflexion": {
+        "freqMod": 0.9,
+        "ampMod": 0.4,
+        "symbol": "🪞"
+      },
+      "verdad": {
+        "freqMod": 1,
+        "ampMod": 0.5,
+        "symbol": "⚖️"
+      },
+      "victoria": {
+        "freqMod": 1.6,
+        "ampMod": 0.9,
+        "symbol": "🏆"
+      },
+      "neutral": {
+        "freqMod": 1,
+        "ampMod": 0.5,
+        "symbol": "〰️"
+      },
+      "proteccion": {
+        "freqMod": 1.2,
+        "ampMod": 0.6,
+        "symbol": "🛡️"
+      },
+      "desconocida": {
+        "freqMod": 1,
+        "ampMod": 0.1,
+        "symbol": "?"
+      }
+    },
+    "globalWave": {
+      "frequency": 613.3081940861405,
+      "amplitude": 0.3639131726871161,
+      "phase": 3.181317745389883,
+      "dominantEmotion": "gratitud",
+      "contributors": 44,
+      "snr": 100,
+      "virusNoise": 0
+    }
+  },
+  "rawData": {
+    "generation": 1,
+    "simulationSteps": 69,
+    "creatures": [
+      {
+        "id": "c-1770183529838-5819",
+        "type": "sabio",
+        "fitness": 0.20215398986132505,
+        "energy": 79.67986183423034,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 435.5504029408234,
+          "amplitude": 0.2669328727807677,
+          "phase": 0.4025966995175736,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 542.4672871215192,
+        "y": 312.47007647439403,
+        "vx": 1.846551342724308,
+        "vy": -1.1327211447306813
+      },
+      {
+        "id": "c-1770183529838-882",
+        "type": "sabio",
+        "fitness": 0.19907772377871277,
+        "energy": 73.12542977095615,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 434.1350174028848,
+          "amplitude": 0.24508476590318706,
+          "phase": 4.7459210151126285,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 557.81537778883,
+        "y": 300.17520447163287,
+        "vx": -12.876728446543698,
+        "vy": -1.1513878610985084
+      },
+      {
+        "id": "c-1770183529838-1301",
+        "type": "inteligente",
+        "fitness": 0.1167610488489075,
+        "energy": 73.50130971278455,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 708.239944928562,
+          "amplitude": 0.2956052388511381,
+          "phase": 5.4427448789881865,
+          "emotion": "optimismo",
+          "symbol": "🌟"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 576.5527003195182,
+        "y": 286.93942078179276,
+        "vx": -14.316539009432828,
+        "vy": 1.6744802687573237
+      },
+      {
+        "id": "c-1770183529838-6138",
+        "type": "emocional",
+        "fitness": 0.3559473717713421,
+        "energy": 98.67201745961022,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 658.6099845583029,
+          "amplitude": 0.5944321047576612,
+          "phase": 6.221555881719716,
+          "emotion": "euforia",
+          "symbol": "🤩"
+        },
+        "inventory": [
+          {
+            "id": "out-1770183530276-4999",
+            "content": "WAVE_BRIDGE [emocional] → 529Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183532587-3195",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [emocional] → 529Hz",
+            "ts": 1770183532587
+          }
+        ],
+        "translationsDone": 1,
+        "x": 596.9908714293762,
+        "y": 277.3648985087131,
+        "vx": -9.985506706620793,
+        "vy": 1.1444968973846847
+      },
+      {
+        "id": "c-1770183529838-7905",
+        "type": "inteligente",
+        "fitness": 0.22171436981943132,
+        "energy": 94.10018939506756,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 1064.9676797844065,
+          "amplitude": 0.5670011363704052,
+          "phase": 2.530977677003875,
+          "emotion": "euforia",
+          "symbol": "🤩"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 614.5796102863069,
+        "y": 281.98520287338414,
+        "vx": -12.603130842831673,
+        "vy": -1.2525849092104795
+      },
+      {
+        "id": "c-1770183529838-873",
+        "type": "inteligente",
+        "fitness": 0.2128644673312217,
+        "energy": 95.15586750622482,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 847.9348243005642,
+          "amplitude": 0.5096312933665323,
+          "phase": 4.217311432184964,
+          "emotion": "energia",
+          "symbol": "⚡"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 608.0034869946469,
+        "y": 294.7093233642189,
+        "vx": -173.8465034978349,
+        "vy": -29.27540639233893
+      },
+      {
+        "id": "c-1770183529838-4321",
+        "type": "emocional",
+        "fitness": 0.4671806723055054,
+        "energy": 92.95170426727545,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 379.5725299212191,
+          "amplitude": 0.3111723475575847,
+          "phase": 0.21412541433694088,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [
+          {
+            "id": "out-1770183522152-7529",
+            "content": "WAVE_BRIDGE [sabio] → 452Hz",
+            "type": "output"
+          },
+          {
+            "id": "out-1770183530572-3460",
+            "content": "WAVE_BRIDGE [emocional] → 585Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530046-7914",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [sabio] → 452Hz",
+            "ts": 1770183530046
+          },
+          {
+            "id": "o-1770183532091-6628",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [emocional] → 585Hz",
+            "ts": 1770183532091
+          }
+        ],
+        "translationsDone": 2,
+        "x": 589.8615554497449,
+        "y": 296.28169827691374,
+        "vx": -80.71934082409192,
+        "vy": -17.970754386327272
+      },
+      {
+        "id": "c-1770183529838-4049",
+        "type": "sabio",
+        "fitness": 0.31576234912065765,
+        "energy": 86.0131235490157,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 457.26582923986973,
+          "amplitude": 0.2880437451633856,
+          "phase": 2.163417311971955,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 570.9449319521415,
+        "y": 295.8652627883528,
+        "vx": -7.679486022032492,
+        "vy": -0.6096364459663062
+      },
+      {
+        "id": "c-1770183529838-3373",
+        "type": "emocional",
+        "fitness": 0.5244073936937964,
+        "energy": 96.38857118630963,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 388.7137652432356,
+          "amplitude": 0.33588328191833133,
+          "phase": 1.645990374650843,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [
+          {
+            "id": "out-1770183530524-351",
+            "content": "WAVE_BRIDGE [sabio] → 491Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530667-6627",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [sabio] → 491Hz",
+            "ts": 1770183530667
+          }
+        ],
+        "translationsDone": 1,
+        "x": 537.1337849288587,
+        "y": 292.74691724330967,
+        "vx": 0.08129947334347287,
+        "vy": 0.5732877821918183
+      },
+      {
+        "id": "c-1770183529838-9285",
+        "type": "emocional",
+        "fitness": 0.5862205705221447,
+        "energy": 96.5730633691979,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 398.28723295653396,
+          "amplitude": 0.3232435445639929,
+          "phase": 1.7023215783543861,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 499.5691302266578,
+        "y": 287.8799321998163,
+        "vx": 2.76844659361654,
+        "vy": 0.4528654178380086
+      },
+      {
+        "id": "c-1770183529838-9260",
+        "type": "emocional",
+        "fitness": 0.5629570001362504,
+        "energy": 90.9279591171514,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 394.43242874871845,
+          "amplitude": 0.3044265303905046,
+          "phase": 5.673543297869635,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 467.81578215949145,
+        "y": 286.7925908568313,
+        "vx": 1.3899395211238845,
+        "vy": -0.9456224718260153
+      },
+      {
+        "id": "c-1770183529838-9829",
+        "type": "inteligente",
+        "fitness": 0.5119243980850067,
+        "energy": 97.66019902160379,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 658.4605414099445,
+          "amplitude": 0.3268673300720126,
+          "phase": 4.462279379388285,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-9227",
+            "content": "CODE(9227)",
+            "type": "code"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530235-4143",
+            "type": "terminal",
+            "content": "CODE(9227)",
+            "ts": 1770183530235
+          }
+        ],
+        "translationsDone": 0,
+        "x": 403.2523453575647,
+        "y": 271.1713422821096,
+        "vx": 1.9751418862467247,
+        "vy": -2.456792275424078
+      },
+      {
+        "id": "c-1770183529838-5193",
+        "type": "emocional",
+        "fitness": 0.42961308801445525,
+        "energy": 83.28078326721021,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 506.03215175056715,
+          "amplitude": 0.44629751075845436,
+          "phase": 2.3600034135376475,
+          "emotion": "vitalidad",
+          "symbol": "💚"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 406.42445852771067,
+        "y": 280.80274336840193,
+        "vx": -6.8745309658122515,
+        "vy": -1.2230546699696851
+      },
+      {
+        "id": "c-1770183529838-5997",
+        "type": "emocional",
+        "fitness": 0.4791655934073179,
+        "energy": 81.09294152386057,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 483.37692424426064,
+          "amplitude": 0.3259717660954422,
+          "phase": 3.8319925519323306,
+          "emotion": "optimismo",
+          "symbol": "🌟"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 426.1604063839414,
+        "y": 281.38834057210454,
+        "vx": -23.618179635684072,
+        "vy": -28.14480376246818
+      },
+      {
+        "id": "c-1770183529838-7284",
+        "type": "emocional",
+        "fitness": 0.5391163649549912,
+        "energy": 111.47212040363475,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 674.3695890754822,
+          "amplitude": 0.6712327224218084,
+          "phase": 0.39818750342193,
+          "emotion": "lucha",
+          "symbol": "🥊"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-6454",
+            "content": "CHAT(6454)",
+            "type": "interaction"
+          },
+          {
+            "id": "r-1770183529838-5197",
+            "content": "CHAT(5197)",
+            "type": "interaction"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530275-1801",
+            "type": "interaction",
+            "content": "CHAT(6454)",
+            "ts": 1770183530275
+          },
+          {
+            "id": "o-1770183530572-1675",
+            "type": "interaction",
+            "content": "CHAT(5197)",
+            "ts": 1770183530572
+          }
+        ],
+        "translationsDone": 0,
+        "x": 441.72216023674724,
+        "y": 293.80870820668633,
+        "vx": 162.74021195644124,
+        "vy": -20.953600947369832
+      },
+      {
+        "id": "c-1770183529838-3233",
+        "type": "emocional",
+        "fitness": 0.33843631853161044,
+        "energy": 107.34525350648107,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 359.50618471466186,
+          "amplitude": 0.3591508450216035,
+          "phase": 4.116537544033406,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-3371",
+            "content": "CHAT(3371)",
+            "type": "interaction"
+          },
+          {
+            "id": "r-1770183529838-5104",
+            "content": "CHAT(5104)",
+            "type": "interaction"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530424-5283",
+            "type": "interaction",
+            "content": "CHAT(3371)",
+            "ts": 1770183530424
+          },
+          {
+            "id": "o-1770183530524-541",
+            "type": "interaction",
+            "content": "CHAT(5104)",
+            "ts": 1770183530524
+          }
+        ],
+        "translationsDone": 0,
+        "x": 459.1749708346437,
+        "y": 298.92380357094,
+        "vx": -162.30581647697758,
+        "vy": -48.025723203087324
+      },
+      {
+        "id": "c-1770183529838-4874",
+        "type": "inteligente",
+        "fitness": 0.6977659104942768,
+        "energy": 110.22737904121698,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 970.8304772004306,
+          "amplitude": 0.4425095161648678,
+          "phase": 0.49749224050766117,
+          "emotion": "color",
+          "symbol": "🌈"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-9126",
+            "content": "CODE(9126)",
+            "type": "code"
+          },
+          {
+            "id": "r-1770183529838-8582",
+            "content": "CODE(8582)",
+            "type": "code"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530617-2134",
+            "type": "terminal",
+            "content": "CODE(9126)",
+            "ts": 1770183530617
+          },
+          {
+            "id": "o-1770183530667-4530",
+            "type": "terminal",
+            "content": "CODE(8582)",
+            "ts": 1770183530667
+          }
+        ],
+        "translationsDone": 0,
+        "x": 450.6327549383242,
+        "y": 284.997418242195,
+        "vx": -89.62901890900787,
+        "vy": -35.497623766406456
+      },
+      {
+        "id": "c-1770183529838-6456",
+        "type": "sabio",
+        "fitness": 0.32531655520243524,
+        "energy": 102.98492815911756,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 166.3295496039974,
+          "amplitude": 0.13784657087882338,
+          "phase": 5.761647537384874,
+          "emotion": "olvido",
+          "symbol": "🌫️"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 437.18795443516234,
+        "y": 272.29044750633614,
+        "vx": -5.015982710815154,
+        "vy": -8.51844680323716
+      },
+      {
+        "id": "c-1770183529838-8523",
+        "type": "emocional",
+        "fitness": 0.6394455507339459,
+        "energy": 110.79906413337197,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 404.99660499473197,
+          "amplitude": 0.37066354711123983,
+          "phase": 2.794592629496691,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-1478",
+            "content": "CHAT(1478)",
+            "type": "interaction"
+          },
+          {
+            "id": "out-1770183530617-2158",
+            "content": "WAVE_BRIDGE [inteligente] → 592Hz",
+            "type": "output"
+          },
+          {
+            "id": "out-1770183530667-3044",
+            "content": "WAVE_BRIDGE [inteligente] → 545Hz",
+            "type": "output"
+          },
+          {
+            "id": "r-1770183529838-6873",
+            "content": "CHAT(6873)",
+            "type": "interaction"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530480-9947",
+            "type": "interaction",
+            "content": "CHAT(1478)",
+            "ts": 1770183530480
+          },
+          {
+            "id": "o-1770183531263-85",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [inteligente] → 592Hz",
+            "ts": 1770183531263
+          },
+          {
+            "id": "o-1770183531453-6396",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [inteligente] → 545Hz",
+            "ts": 1770183531453
+          },
+          {
+            "id": "o-1770183531873-6580",
+            "type": "interaction",
+            "content": "CHAT(6873)",
+            "ts": 1770183531873
+          }
+        ],
+        "translationsDone": 2,
+        "x": 421.77511166088715,
+        "y": 259.60349414400486,
+        "vx": -8.215707960242657,
+        "vy": -4.806436297414885
+      },
+      {
+        "id": "c-1770183529838-575",
+        "type": "emocional",
+        "fitness": 0.5615496303230747,
+        "energy": 96.9590712336003,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 428.07800660426346,
+          "amplitude": 0.38943628493440113,
+          "phase": 1.4152908413216778,
+          "emotion": "curiosidad",
+          "symbol": "🔍"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-7552",
+            "content": "CHAT(7552)",
+            "type": "interaction"
+          },
+          {
+            "id": "r-1770183529838-6901",
+            "content": "CHAT(6901)",
+            "type": "interaction"
+          },
+          {
+            "id": "out-1770183531873-5642",
+            "content": "WAVE_BRIDGE [emocional] → 556Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530235-1671",
+            "type": "interaction",
+            "content": "CHAT(7552)",
+            "ts": 1770183530235
+          },
+          {
+            "id": "o-1770183530480-4951",
+            "type": "interaction",
+            "content": "CHAT(6901)",
+            "ts": 1770183530480
+          },
+          {
+            "id": "o-1770183532205-6065",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [emocional] → 556Hz",
+            "ts": 1770183532205
+          }
+        ],
+        "translationsDone": 1,
+        "x": 406.2146401923058,
+        "y": 248.65192259569287,
+        "vx": 1.5954993149640981,
+        "vy": 7.140480045331314
+      },
+      {
+        "id": "c-1770183529838-3567",
+        "type": "emocional",
+        "fitness": 0.27738324081325105,
+        "energy": 83.60987144284663,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 347.2431115920711,
+          "amplitude": 0.28003290480948867,
+          "phase": 1.3383612267938148,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 387.89325627495657,
+        "y": 238.0660478326667,
+        "vx": 8.730789444167883,
+        "vy": 3.5862134550505695
+      },
+      {
+        "id": "c-1770183529838-4473",
+        "type": "emocional",
+        "fitness": 0.18531153463429179,
+        "energy": 82.66733363499853,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 335.1936160032291,
+          "amplitude": 0.2768911121166617,
+          "phase": 0.1433233140266239,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 356.31434216039827,
+        "y": 224.31881106018403,
+        "vx": 14.261855249036524,
+        "vy": 4.796187312151398
+      },
+      {
+        "id": "c-1770183529838-9582",
+        "type": "sabio",
+        "fitness": 0.4081702610914024,
+        "energy": 91.02064341840078,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 687.7308124538264,
+          "amplitude": 0.48757676489813745,
+          "phase": 1.27153324228496,
+          "emotion": "energia",
+          "symbol": "⚡"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 379.9930052401328,
+        "y": 244.46757667662226,
+        "vx": -2.8620265193320686,
+        "vy": 0.07412167679561821
+      },
+      {
+        "id": "c-1770183529838-8475",
+        "type": "emocional",
+        "fitness": 0.6720151608499979,
+        "energy": 95.16747168254969,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 745.485573970305,
+          "amplitude": 0.573404830095298,
+          "phase": 5.890305187626275,
+          "emotion": "euforia",
+          "symbol": "🤩"
+        },
+        "inventory": [
+          {
+            "id": "out-1770183530235-1352",
+            "content": "WAVE_BRIDGE [inteligente] → 516Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530667-1557",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [inteligente] → 516Hz",
+            "ts": 1770183530667
+          }
+        ],
+        "translationsDone": 2,
+        "x": 396.57760236063825,
+        "y": 243.9144188521263,
+        "vx": 31.424816347603098,
+        "vy": 32.26929382574987
+      },
+      {
+        "id": "c-1770183529838-483",
+        "type": "inteligente",
+        "fitness": 0.6196277191005999,
+        "energy": 103.30251360425048,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 750.7833095862903,
+          "amplitude": 0.41481005441700186,
+          "phase": 1.9213926525333207,
+          "emotion": "curiosidad",
+          "symbol": "🔍"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183522491-7268",
+            "content": "CODE(7268)",
+            "type": "code"
+          },
+          {
+            "id": "r-1770183529838-7057",
+            "content": "CODE(7057)",
+            "type": "code"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183529890-7568",
+            "type": "terminal",
+            "content": "CODE(7268)",
+            "ts": 1770183529890
+          },
+          {
+            "id": "o-1770183530276-1964",
+            "type": "terminal",
+            "content": "CODE(7057)",
+            "ts": 1770183530276
+          }
+        ],
+        "translationsDone": 0,
+        "x": 381.2882597845113,
+        "y": 255.2348488931602,
+        "vx": 3.6109552983065565,
+        "vy": -6.3168095315565465
+      },
+      {
+        "id": "c-1770183529838-8936",
+        "type": "inteligente",
+        "fitness": 0.5333728619960162,
+        "energy": 96.15936794688902,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 664.5706796293954,
+          "amplitude": 0.3218645598229633,
+          "phase": 0.08880758044600867,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 385.22272927830335,
+        "y": 274.60053555599916,
+        "vx": 188.48865261039927,
+        "vy": 16.92944684349716
+      },
+      {
+        "id": "c-1770183529838-2946",
+        "type": "inteligente",
+        "fitness": 0.619680838247573,
+        "energy": 98.24169553213436,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 1001.5261540498259,
+          "amplitude": 0.5260890428380498,
+          "phase": 3.4819916512477107,
+          "emotion": "energia",
+          "symbol": "⚡"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 396.11076175844204,
+        "y": 260.8225018394827,
+        "vx": -98.56829864964195,
+        "vy": 16.932108983509575
+      },
+      {
+        "id": "c-1770183529838-4594",
+        "type": "emocional",
+        "fitness": 0.4928267267231534,
+        "energy": 76.99661457148761,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 380.9884367240754,
+          "amplitude": 0.257988715238292,
+          "phase": 0.05546847645999975,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 387.4570396132045,
+        "y": 272.3328861171121,
+        "vx": -183.98840891842707,
+        "vy": -94.26230252328018
+      },
+      {
+        "id": "c-1770183529838-5077",
+        "type": "inteligente",
+        "fitness": 0.37996711076117345,
+        "energy": 79.61036418752572,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 793.1416618346183,
+          "amplitude": 0.3200414567501028,
+          "phase": 1.0343400915271914,
+          "emotion": "optimismo",
+          "symbol": "🌟"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183521171-9929",
+            "content": "CODE(9929)",
+            "type": "code"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183529890-6559",
+            "type": "terminal",
+            "content": "CODE(9929)",
+            "ts": 1770183529890
+          }
+        ],
+        "translationsDone": 0,
+        "x": 374.2350212025723,
+        "y": 286.53377614281146,
+        "vx": -55.23406052347991,
+        "vy": -6.714708063518189
+      },
+      {
+        "id": "c-1770183529838-3462",
+        "type": "sabio",
+        "fitness": 0.4540405111738801,
+        "energy": 92.57881447935911,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 528.3740573675606,
+          "amplitude": 0.37191525791743635,
+          "phase": 1.646733524465354,
+          "emotion": "salud",
+          "symbol": "💪"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-7138",
+            "content": "EQU(7138)",
+            "type": "equation"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530196-1308",
+            "type": "spreadsheet",
+            "content": "EQU(7138)",
+            "ts": 1770183530196
+          }
+        ],
+        "translationsDone": 0,
+        "x": 356.86041635331156,
+        "y": 291.9544038106512,
+        "vx": 108.50305796212717,
+        "vy": -62.22026071495322
+      },
+      {
+        "id": "c-1770183529838-5441",
+        "type": "inteligente",
+        "fitness": 0.4263951558325583,
+        "energy": 98.79413733225151,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 635.1105933695496,
+          "amplitude": 0.33064712444083827,
+          "phase": 0.9764546328928745,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 370.03922927482057,
+        "y": 278.1053119975697,
+        "vx": -6.19363684786607,
+        "vy": -5.630169587706046
+      },
+      {
+        "id": "c-1770183529838-7702",
+        "type": "inteligente",
+        "fitness": 0.39600720561506464,
+        "energy": 91.59321241808351,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 911.1365868764483,
+          "amplitude": 0.49063046622977863,
+          "phase": 4.320672129881665,
+          "emotion": "energia",
+          "symbol": "⚡"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-9133",
+            "content": "CODE(9133)",
+            "type": "code"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530276-2317",
+            "type": "terminal",
+            "content": "CODE(9133)",
+            "ts": 1770183530276
+          }
+        ],
+        "translationsDone": 0,
+        "x": 385.1779473542723,
+        "y": 266.31081141510674,
+        "vx": -8.369430335571055,
+        "vy": 1.9568060882839429
+      },
+      {
+        "id": "c-1770183529838-2235",
+        "type": "emocional",
+        "fitness": 0.47540205230572796,
+        "energy": 104.21380731889272,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 688.224284471475,
+          "amplitude": 0.6276828439133562,
+          "phase": 3.0205755993144408,
+          "emotion": "euforia",
+          "symbol": "🤩"
+        },
+        "inventory": [
+          {
+            "id": "out-1770183530276-1488",
+            "content": "WAVE_BRIDGE [inteligente] → 600Hz",
+            "type": "output"
+          },
+          {
+            "id": "out-1770183530196-5394",
+            "content": "WAVE_BRIDGE [sabio] → 540Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530572-7487",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [inteligente] → 600Hz",
+            "ts": 1770183530572
+          },
+          {
+            "id": "o-1770183531112-9822",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [sabio] → 540Hz",
+            "ts": 1770183531112
+          }
+        ],
+        "translationsDone": 2,
+        "x": 401.10603556583675,
+        "y": 255.3658119801547,
+        "vx": 152.20402663841622,
+        "vy": 1.0944999434952052
+      },
+      {
+        "id": "c-1770183529838-5013",
+        "type": "inteligente",
+        "fitness": 0.26435783112162875,
+        "energy": 77.70467317954572,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 645.0561301096077,
+          "amplitude": 0.31241869271818273,
+          "phase": 5.827873712144843,
+          "emotion": "crecimiento",
+          "symbol": "🌱"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 373.6043065977475,
+        "y": 279.88558443451427,
+        "vx": 5.850733504926622,
+        "vy": -1.8954167383918785
+      },
+      {
+        "id": "c-1770183529838-2766",
+        "type": "inteligente",
+        "fitness": 0.22637482088641073,
+        "energy": 69.99864453235766,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 583.8524464867485,
+          "amplitude": 0.23466214844119213,
+          "phase": 1.310763278046494,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 351.1468204884971,
+        "y": 286.5794417245279,
+        "vx": 1.7477833685157123,
+        "vy": -0.6150299632991004
+      },
+      {
+        "id": "c-1770183529838-1328",
+        "type": "inteligente",
+        "fitness": 0.4804396961429765,
+        "energy": 67.86522599453546,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 653.2620198744966,
+          "amplitude": 0.22755075331511815,
+          "phase": 1.4271779750675009,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 328.9888068034983,
+        "y": 282.01565561647317,
+        "vx": 13.927212540732107,
+        "vy": 0.6867810013803229
+      },
+      {
+        "id": "c-1770183529838-3605",
+        "type": "emocional",
+        "fitness": 0.5008208448033207,
+        "energy": 78.7395121372502,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 384.81575258972396,
+          "amplitude": 0.26379837379083393,
+          "phase": 2.1363040237769297,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 308.3517584533331,
+        "y": 272.75216943128055,
+        "vx": 5.490798084445634,
+        "vy": -0.5681237818630622
+      },
+      {
+        "id": "c-1770183529838-2508",
+        "type": "emocional",
+        "fitness": 0.2761781467945758,
+        "energy": 67.48055779250356,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 350.25306362153856,
+          "amplitude": 0.2262685259750118,
+          "phase": 0.9408016990861228,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 294.60637381138145,
+        "y": 258.8039633352702,
+        "vx": 6.09983396950544,
+        "vy": 1.242272884310025
+      },
+      {
+        "id": "c-1770183529838-849",
+        "type": "inteligente",
+        "fitness": 0.37748863872134164,
+        "energy": 76.98139220152919,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "inteligente",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 626.9803752357938,
+          "amplitude": 0.2579379740050972,
+          "phase": 1.0914056837983352,
+          "emotion": "gratitud",
+          "symbol": "🙏"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 304.20054294357635,
+        "y": 243.527984464846,
+        "vx": 497.81035935751345,
+        "vy": 77.09648010714973
+      },
+      {
+        "id": "c-1770183529838-9586",
+        "type": "emocional",
+        "fitness": 0.5985388978470992,
+        "energy": 85.48537676240487,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 436.2434451915526,
+          "amplitude": 0.34354150704961933,
+          "phase": 0.37969438465019323,
+          "emotion": "crecimiento",
+          "symbol": "🌱"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-7786",
+            "content": "CHAT(7786)",
+            "type": "interaction"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530276-6181",
+            "type": "interaction",
+            "content": "CHAT(7786)",
+            "ts": 1770183530276
+          }
+        ],
+        "translationsDone": 0,
+        "x": 322.8206632910867,
+        "y": 243.0457087397263,
+        "vx": 143.260092317082,
+        "vy": 42.34043421921987
+      },
+      {
+        "id": "c-1770183529838-3638",
+        "type": "emocional",
+        "fitness": 0.6273322359574117,
+        "energy": 83.722995461805,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "emocional",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 550.3987030176772,
+          "amplitude": 0.39257397882175654,
+          "phase": 0.8395577731595907,
+          "emotion": "juego",
+          "symbol": "🎮"
+        },
+        "inventory": [
+          {
+            "id": "out-1770183530275-2838",
+            "content": "WAVE_BRIDGE [emocional] → 540Hz",
+            "type": "output"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183531063-7574",
+            "type": "wave_table",
+            "content": "WAVE_BRIDGE [emocional] → 540Hz",
+            "ts": 1770183531063
+          }
+        ],
+        "translationsDone": 1,
+        "x": 342.32156232583105,
+        "y": 242.85422901503009,
+        "vx": -36.279568740415755,
+        "vy": 13.549006422011137
+      },
+      {
+        "id": "c-1770183529838-9322",
+        "type": "sabio",
+        "fitness": 0.6795249367625329,
+        "energy": 98.8863471418719,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 672.8237487177029,
+          "amplitude": 0.4633362866620687,
+          "phase": 2.022590213894091,
+          "emotion": "placer",
+          "symbol": "😌"
+        },
+        "inventory": [
+          {
+            "id": "r-1770183529838-577",
+            "content": "EQU(-577)",
+            "type": "equation"
+          }
+        ],
+        "output": [
+          {
+            "id": "o-1770183530524-2314",
+            "type": "spreadsheet",
+            "content": "EQU(-577)",
+            "ts": 1770183530524
+          }
+        ],
+        "translationsDone": 0,
+        "x": 361.8950549476282,
+        "y": 243.31332475550624,
+        "vx": 104.26385817739434,
+        "vy": 26.89319625159069
+      },
+      {
+        "id": "c-1770183529838-2748",
+        "type": "sabio",
+        "fitness": 0.5599753281604937,
+        "energy": 96.66737617718184,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 549.9330569620278,
+          "amplitude": 0.3882695047087273,
+          "phase": 4.01419921508721,
+          "emotion": "salud",
+          "symbol": "💪"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 381.28166108573294,
+        "y": 244.76788354013325,
+        "vx": 0.8813907183081989,
+        "vy": 3.246700062800524
+      },
+      {
+        "id": "c-1770183529838-6110",
+        "type": "sabio",
+        "fitness": 0.3212730250710304,
+        "energy": 82.71032313196713,
+        "heritage": {
+          "parentId": null,
+          "parentType": null,
+          "lineageDepth": 0,
+          "generation": 1,
+          "ancestors": [],
+          "mutations": 0,
+          "originType": "sabio",
+          "birthTime": 1770183529838,
+          "wisdom": 0,
+          "knowledge": []
+        },
+        "wave": {
+          "frequency": 165.44493582866525,
+          "amplitude": 0.11081376417595615,
+          "phase": 1.3888691525598347,
+          "emotion": "olvido",
+          "symbol": "🌫️"
+        },
+        "inventory": [],
+        "output": [],
+        "translationsDone": 0,
+        "x": 400.18681723260755,
+        "y": 246.8510722223458,
+        "vx": 11.203482257455429,
+        "vy": 5.947500042363892
+      }
+    ],
+    "globalWave": {
+      "frequency": 613.3081940861405,
+      "amplitude": 0.3639131726871161,
+      "phase": 3.181317745389883,
+      "dominantEmotion": "gratitud",
+      "contributors": 44,
+      "snr": 100,
+      "virusNoise": 0
+    }
+  }
+}
